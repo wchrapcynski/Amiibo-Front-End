@@ -6,13 +6,40 @@ import Amiibo from './Amiibo'
 class AmiiboList extends Component {
     constructor(props) {
         super(props);
-        this.state = { amiiboArray: []}
+        this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 50 }
+        this.itemsPerPage = 50;
     }
+
+    nextPage = () => {
+        this.setState({
+        pageStart: this.state.pageStart + this.itemsPerPage,
+        pageEnd: this.state.pageEnd + this.itemsPerPage
+        })
+        if(this.state.pageEnd > this.state.amiiboArray.length) {
+            this.setState({
+              pageEnd: this.state.amiiboArray.length
+            });
+        }
+    }
+
+    previousPage = () => {
+        this.setState({
+            pageStart: this.state.pageStart - this.itemsPerPage,
+            pageEnd: this.state.pageEnd - this.itemsPerPage
+        })
+        if(this.state.pageStart > 0) {
+            this.setState({
+              pageStart: 0
+            });
+        }
+    }
+
     render(){
-        this.state.amiiboArray = this.props.data.map(item => {
+        this.state.amiiboArray = this.props.data.slice(this.state.pageStart,this.state.pageEnd).map(item => {
           return (
             <div key={item._id}>
-              <Amiibo className="amiibo-name" 
+              <Amiibo
+                className="amiibo-name"
                 name={item.name}
                 gameSeries={item.gameSeries}
                 character={item.character}
@@ -21,7 +48,16 @@ class AmiiboList extends Component {
             </div>
           );
         });
-        return <main>{this.state.amiiboArray}</main>;
+        return (
+          <main>
+            <div className="page-nav">
+              <div className="page-nav-next">Next</div>
+              <div className="space-five"></div>
+              <div className="page-nav-previous">Previous</div>
+            </div>
+            <div className="amiibo-list">{this.state.amiiboArray}</div>
+          </main>
+        );
     }
 
 }

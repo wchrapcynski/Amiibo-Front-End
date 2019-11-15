@@ -1,0 +1,12 @@
+.amiibo-list, .page-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: auto
+}
+
+.space-five {
+    width: 5px;
+}

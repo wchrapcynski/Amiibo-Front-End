@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import AmiiboList from './components/AmiiboList'
 
@@ -19,8 +18,8 @@ class App extends Component {
         console.log("Got it!");
         this.setState({
           amiibo: res,
-          isloading: false
-        })
+          isLoading: false
+        });
       })
       .catch(err => {
         console.log("We've got a problem, sir.", err)
@@ -33,11 +32,19 @@ class App extends Component {
 
   render() {
     // console.log(this.state.amiibo);
-    return (
-      <div>
-        <AmiiboList data={ this.state.amiibo} />
-      </div>
-    );
+    if(this.state.isLoading == true) {
+      return(
+        <div>
+          <h1>Loading</h1>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <AmiiboList data={this.state.amiibo} />
+        </div>
+      );
+    }
   }
 }
 
