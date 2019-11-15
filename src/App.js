@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import AmiiboList from './components/AmiiboList'
 
 class App extends Component {
   constructor(props) {
@@ -31,10 +32,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.amiibo);
+    // console.log(this.state.amiibo);
     return (
       <div>
-        <h1>this is a test</h1>
+        <AmiiboList data={ this.state.amiibo} />
       </div>
     );
   }
