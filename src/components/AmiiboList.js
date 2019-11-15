@@ -11,31 +11,25 @@ class AmiiboList extends Component {
     }
 
     nextPage = () => {
-        this.setState({
-        pageStart: this.state.pageStart + this.itemsPerPage,
-        pageEnd: this.state.pageEnd + this.itemsPerPage
-        })
-        if(this.state.pageEnd > this.state.amiiboArray.length) {
+        if(this.state.pageEnd < this.props.amiibo.length) {
             this.setState({
-              pageEnd: this.state.amiiboArray.length
+            pageStart: this.state.pageStart + this.itemsPerPage,
+            pageEnd: this.state.pageEnd + this.itemsPerPage
             });
         }
     }
 
     previousPage = () => {
-        this.setState({
-            pageStart: this.state.pageStart - this.itemsPerPage,
-            pageEnd: this.state.pageEnd - this.itemsPerPage
-        })
         if(this.state.pageStart > 0) {
             this.setState({
-              pageStart: 0
+              pageStart: this.state.pageStart - this.itemsPerPage,
+              pageEnd: this.state.pageEnd - this.itemsPerPage
             });
         }
     }
 
     render(){
-        this.state.amiiboArray = this.props.data.slice(this.state.pageStart,this.state.pageEnd).map(item => {
+        this.state.amiiboArray = this.props.amiibo.slice(this.state.pageStart,this.state.pageEnd).map(item => {
           return (
             <div key={item._id}>
               <Amiibo
@@ -51,9 +45,9 @@ class AmiiboList extends Component {
         return (
           <main>
             <div className="page-nav">
-              <div className="page-nav-next">Next</div>
+              <div className="page-nav-previous" onClick={this.previousPage}>Previous</div>
               <div className="space-five"></div>
-              <div className="page-nav-previous">Previous</div>
+              <div className="page-nav-next" onClick={this.nextPage}>Next</div>
             </div>
             <div className="amiibo-list">{this.state.amiiboArray}</div>
           </main>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 import AmiiboList from './components/AmiiboList'
 
@@ -41,7 +42,18 @@ class App extends Component {
     } else {
       return (
         <div>
-          <AmiiboList data={this.state.amiibo} />
+          <nav>
+            <Link to="/">Amiibo List</Link>
+          </nav>
+          <div className="amiibo-list">
+            <Route
+              path="/"
+              exact
+              render={routerProps => (
+                <AmiiboList {...routerProps} {...this.state} />
+              )}
+            />
+          </div>
         </div>
       );
     }
