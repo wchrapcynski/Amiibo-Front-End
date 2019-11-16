@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../Amiibo.css";
+import "./AmiiboSearchName.css";
 
 class AmiiboSearchName extends Component {
   constructor(props) {
@@ -32,15 +33,21 @@ class AmiiboSearchName extends Component {
 
   render() {
     return (
-      <div className="amiibo-search">
-        <div className="amiibo-search-name">
-          <form>
+      <div>
+        <div className="amiibo-search-name form-group">
+          <form className="form-inline">
             <input
               type="text"
               placeholder="Search by Name"
               onChange={this.setName}
+              className="form-control"
             />
-            <button type="submit" onClick={this.searchByName}>
+            <div className="space-five"></div>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={this.searchByName}
+            >
               Search
             </button>
           </form>

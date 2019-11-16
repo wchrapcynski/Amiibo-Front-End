@@ -44,12 +44,19 @@ class AmiiboList extends Component {
         });
         return (
           <main>
-            <div className="page-nav">
-              <div className="page-nav-previous" onClick={this.previousPage}>Previous</div>
-              <div className="space-five"></div>
-              <div className="page-nav-next" onClick={this.nextPage}>Next</div>
+            <div>
+              <h1>Amiibo List</h1>
+              <div className="page-nav">
+                <div className="page-nav-previous" onClick={this.previousPage}>
+                  Previous
+                </div>
+                <div className="space-five"></div>
+                <div className="page-nav-next" onClick={this.nextPage}>
+                  Next
+                </div>
+              </div>
+              <div className="amiibo-list">{this.state.amiiboArray}</div>
             </div>
-            <div className="amiibo-list">{this.state.amiiboArray}</div>
           </main>
         );
     }

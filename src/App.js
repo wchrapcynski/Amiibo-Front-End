@@ -42,12 +42,16 @@ class App extends Component {
     } else {
       return (
         <div>
-          <nav>
-            <Link to="/">Amiibo List</Link>
-            <div className="space-five"></div>
-            <Link to="/search">Search</Link>
-            <div className="space-five"></div>
-            <Link to="/edit">Edit</Link>
+          <nav className="nav">
+            <Link className="nav-link" to="/">
+              Amiibo List
+            </Link>
+            <Link className="nav-link" to="/search">
+              Search
+            </Link>
+            <Link className="nav-link" to="/edit">
+              Edit
+            </Link>
           </nav>
           <div className="amiibo-list">
             <Route
