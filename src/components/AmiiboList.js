@@ -43,24 +43,47 @@ class AmiiboList extends Component {
           );
         });
         return (
-          <main>
-            <div>
-              <h1>Amiibo List</h1>
-              <div className="page-nav">
-                <div className="page-nav-previous" onClick={this.previousPage}>
-                  Previous
+          <div>
+            <main>
+              <div>
+                <h1>Amiibo List</h1>
+                <div className="page-nav">
+                  <button
+                    className="page-nav-previous btn btn-primary"
+                    onClick={this.previousPage}
+                  >
+                    Previous
+                  </button>
+                  <div className="space-five"></div>
+                  <button
+                    className="page-nav-next btn btn-primary"
+                    onClick={this.nextPage}
+                  >
+                    Next
+                  </button>
                 </div>
-                <div className="space-five"></div>
-                <div className="page-nav-next" onClick={this.nextPage}>
-                  Next
+                <div className="amiibo-list">{this.state.amiiboArray}</div>
+                <div className="page-nav">
+                  <button
+                    className="page-nav-previous btn btn-primary"
+                    onClick={this.previousPage}
+                  >
+                    Previous
+                  </button>
+                  <div className="space-five"></div>
+                  <button
+                    className="page-nav-next btn btn-primary"
+                    onClick={this.nextPage}
+                  >
+                    Next
+                  </button>
                 </div>
               </div>
-              <div className="amiibo-list">{this.state.amiiboArray}</div>
-            </div>
-          </main>
+            </main>
+            <footer></footer>
+          </div>
         );
-    }
-
+    }   
 }
 
 export default AmiiboList

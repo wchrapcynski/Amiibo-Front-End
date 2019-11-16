@@ -38,7 +38,7 @@ class AmiiboSearchName extends Component {
           <form className="form-inline">
             <input
               type="text"
-              placeholder="Search by Name"
+              placeholder="By Name"
               onChange={this.setName}
               className="form-control"
             />

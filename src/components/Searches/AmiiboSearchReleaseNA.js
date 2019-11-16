@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../Amiibo.css";
-import "./AmiiboSearchID.css";
+import "./AmiiboSearchReleaseNA.css";
 
-class AmiiboSearchID extends Component {
+class AmiiboSearchReleaseNA extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchArray: [], searchID: "", isLoading: false };
+    this.state = { searchArray: [], searchRelease: "", isLoading: false };
   }
 
-  searchByID = event => {
+  searchByRelease = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/id/" + this.state.searchID, {})
+    fetch(this.props.apiURL + "/releaseNA/" + this.state.searchRelease, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!", res);
@@ -27,26 +27,26 @@ class AmiiboSearchID extends Component {
       });
   };
 
-  setID = event => {
-    this.setState({ searchID: event.target.value });
+  setRelease = event => {
+    this.setState({ searchRelease: event.target.value });
   };
 
   render() {
     return (
       <div>
-        <div className="amiibo-search-ID form-group">
+        <div className="amiibo-search-release form-group">
           <form className="form-inline">
             <input
               type="text"
-              placeholder="By ID"
-              onChange={this.setID}
+              placeholder="By Release Date"
+              onChange={this.setRelease}
               className="form-control"
             />
             <div className="space-five"></div>
             <button
               className="btn btn-primary"
               type="submit"
-              onClick={this.searchByID}
+              onClick={this.searchByRelease}
             >
               Search
             </button>
@@ -57,4 +57,4 @@ class AmiiboSearchID extends Component {
   }
 }
 
-export default AmiiboSearchID;
+export default AmiiboSearchReleaseNA;
