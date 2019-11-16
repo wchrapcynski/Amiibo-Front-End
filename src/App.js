@@ -42,14 +42,14 @@ class App extends Component {
     } else {
       return (
         <div>
-          <nav className="nav">
-            <Link className="nav-link" to="/">
+          <nav className="nav nav-tabs">
+            <Link className="nav-item nav-link" to="/">
               Amiibo List
             </Link>
-            <Link className="nav-link" to="/search">
+            <Link className="nav-item nav-link" to="/search">
               Search
             </Link>
-            <Link className="nav-link" to="/edit">
+            <Link className="nav-item nav-link" to="/edit">
               Edit
             </Link>
           </nav>

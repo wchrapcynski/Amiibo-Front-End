@@ -4,6 +4,8 @@ import "./Amiibo.css";
 import "./AmiiboSearch.css"
 import AmiiboSearchName from "./Searches/AmiiboSearchName";
 import AmiiboSearchChar from "./Searches/AmiiboSearchChar";
+import AmiiboSearchType from "./Searches/AmiiboSearchType";
+import AmiiboSearchID from "./Searches/AmiiboSearchID";
 
 class AmiiboSearch extends Component {
   constructor(props) {
@@ -16,8 +18,16 @@ class AmiiboSearch extends Component {
       <div className="amiibo-search">
         <h1>Amiibo Search</h1>
         <div className="search-boxes">
-          <AmiiboSearchName apiURL={this.props.apiURL} />
-          <AmiiboSearchChar apiURL={this.props.apiURL} />
+          <div className="search-boxes-left">
+            <AmiiboSearchName apiURL={this.props.apiURL} />
+            <AmiiboSearchChar apiURL={this.props.apiURL} />
+            <AmiiboSearchType apiURL={this.props.apiURL} />
+          </div>
+          <div className="search-boxes-right">
+            <AmiiboSearchID apiURL={this.props.apiURL} />
+            <AmiiboSearchChar apiURL={this.props.apiURL} />
+            <AmiiboSearchType apiURL={this.props.apiURL} />
+          </div>
         </div>
       </div>
     );

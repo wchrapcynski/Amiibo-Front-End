@@ -4,4 +4,9 @@
 
 .search-boxes {
     padding: 20px;
+    display: flex;
+}
+
+.search-boxes-left, .search-boxes-right {
+    padding: 5px;
 }
