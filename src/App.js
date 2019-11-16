@@ -2,18 +2,19 @@ import React, {Component} from 'react';
 import { Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 import AmiiboList from './components/AmiiboList'
+import AmiiboSearch from "./components/AmiiboSearch";
+import AmiiboEdit from "./components/AmiiboEdit";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { amiibo: [], isLoading: false };
-    this.apiURL = "http://localhost:3000/amiibo";
+    this.state = { amiibo: [], isLoading: false, apiURL: "http://localhost:3000/amiibo"  };
   }
 
-  // Fetch from API
+  // Fetch from API to get list
   grabAmiiboData = () => {
     this.setState({ isLoading: true });
-    fetch(this.apiURL, { })
+    fetch(this.state.apiURL, { })
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
@@ -32,7 +33,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.amiibo);
     if(this.state.isLoading == true) {
       return(
         <div>
@@ -44,6 +44,10 @@ class App extends Component {
         <div>
           <nav>
             <Link to="/">Amiibo List</Link>
+            <div className="space-five"></div>
+            <Link to="/search">Search</Link>
+            <div className="space-five"></div>
+            <Link to="/edit">Edit</Link>
           </nav>
           <div className="amiibo-list">
             <Route
@@ -53,22 +57,23 @@ class App extends Component {
                 <AmiiboList {...routerProps} {...this.state} />
               )}
             />
+            <Route
+              path="/search"
+              render={routerProps => (
+                <AmiiboSearch {...routerProps} {...this.state} />
+              )}
+            />
+            <Route
+              path="/edit"
+              render={routerProps => (
+                <AmiiboEdit {...routerProps} {...this.state} />
+              )}
+            />
           </div>
         </div>
       );
     }
   }
 }
-
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <h1>This is a test</h1>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;

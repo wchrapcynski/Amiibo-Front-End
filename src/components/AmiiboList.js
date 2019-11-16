@@ -6,7 +6,7 @@ import Amiibo from './Amiibo'
 class AmiiboList extends Component {
     constructor(props) {
         super(props);
-        this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 50 }
+        this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 50}
         this.itemsPerPage = 50;
     }
 
