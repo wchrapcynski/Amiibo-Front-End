@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Link, Redirect } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import './App.css';
 import AmiiboList from './components/AmiiboList'
 import AmiiboSearch from "./components/AmiiboSearch";
@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.isLoading == true) {
+    if(this.state.isLoading === true) {
       return(
         <div>
           <h1>Loading</h1>

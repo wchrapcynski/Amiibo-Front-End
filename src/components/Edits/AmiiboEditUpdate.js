@@ -1,18 +1,38 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-import "./AmiiboSearchChar.css"
 import "../Amiibo.css";
+import "./AmiiboEditUpdate.css";
 
-class AmiiboSearchChar extends Component {
+class EditUpdate extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchArray: [], searchCharacter: "", isLoading: false };
+    this.state = { searchArray: [], editID: "", isLoading: false };
+    this.data = [{
+      amiiboSeries: "test",
+      character: "test",
+      gameSeries: "test",
+      image: "test",
+      name: "test",
+      release: [
+        {
+          au: "01-01-01",
+          eu: "01-01-01",
+          jp: "01-01-01",
+          na: "01-01-01"
+        }
+      ],
+      type: "test"
+    }]
   }
 
-  searchByCharacter = event => {
+  searchByID = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/character/" + this.state.searchCharacter, {})
+    fetch(this.props.apiURL + "/id/" + this.state.editID, {
+      method: "PUT",
+      body: JSON.stringify(this.data),
+      headers: { "Content-Type": "application/json" }
+    })
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
@@ -20,6 +40,7 @@ class AmiiboSearchChar extends Component {
           searchArray: res,
           isLoading: false
         });
+        // console.log(this.state.searchArray)
         this.props.setSearchArray(res);
       })
       .catch(err => {
@@ -27,26 +48,26 @@ class AmiiboSearchChar extends Component {
       });
   };
 
-  setCharacter = event => {
-    this.setState({ searchCharacter: event.target.value });
+  setID = event => {
+    this.setState({ editID: event.target.value });
   };
 
   render() {
     return (
       <div>
-        <div className="amiibo-search-character form-group ">
+        <div className="amiibo-search-ID form-group">
           <form className="form-inline">
             <input
               type="text"
-              placeholder="By Character"
-              onChange={this.setCharacter}
+              placeholder="By ID"
+              onChange={this.setID}
               className="form-control"
             />
             <div className="space-five"></div>
             <button
               className="btn btn-primary"
               type="submit"
-              onClick={this.searchByCharacter}
+              onClick={this.searchByID}
             >
               Search
             </button>
@@ -57,4 +78,4 @@ class AmiiboSearchChar extends Component {
   }
 }
 
-export default AmiiboSearchChar;
+export default EditUpdate;

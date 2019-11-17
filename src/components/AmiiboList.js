@@ -8,6 +8,7 @@ class AmiiboList extends Component {
         super(props);
         this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 50}
         this.itemsPerPage = 50;
+        this.displayArray = [];
     }
 
     nextPage = () => {
@@ -29,7 +30,7 @@ class AmiiboList extends Component {
     }
 
     render(){
-        this.state.amiiboArray = this.props.amiibo.slice(this.state.pageStart,this.state.pageEnd).map(item => {
+        this.displayArray = this.props.amiibo.slice(this.state.pageStart,this.state.pageEnd).map(item => {
           return (
             <div key={item._id}>
               <Amiibo
@@ -62,7 +63,7 @@ class AmiiboList extends Component {
                     Next
                   </button>
                 </div>
-                <div className="amiibo-list">{this.state.amiiboArray}</div>
+                <div className="amiibo-list">{this.displayArray}</div>
                 <div className="page-nav">
                   <button
                     className="page-nav-previous btn btn-primary"

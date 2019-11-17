@@ -5,8 +5,17 @@
 .search-boxes {
     padding: 20px;
     display: flex;
+    justify-content: center;
 }
 
 .search-boxes-left, .search-boxes-right {
     padding: 5px;
+}
+
+.amiibo-search-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: auto;
 }

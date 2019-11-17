@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../Amiibo.css";
 import "./AmiiboSearchReleaseNA.css";
 
@@ -15,12 +15,12 @@ class AmiiboSearchReleaseNA extends Component {
     fetch(this.props.apiURL + "/releaseNA/" + this.state.searchRelease, {})
       .then(res => res.json())
       .then(res => {
-        console.log("Got it!", res);
+        console.log("Got it!");
         this.setState({
           searchArray: res,
           isLoading: false
         });
-        console.log(this.state.searchArray);
+        this.props.setSearchArray(res);
       })
       .catch(err => {
         console.log("We've got a problem, sir.", err);
