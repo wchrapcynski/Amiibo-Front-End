@@ -1,3 +1,8 @@
-.form-control {
-    width: 500px;
+.amiibo-search-ID {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.form-group {
+    padding: 5px 0;
 }

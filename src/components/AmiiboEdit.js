@@ -37,6 +37,7 @@ class AmiiboEdit extends Component {
       <div>
         <div className="amiibo-edit">
           <h1>Amiibo Edit</h1>
+          <div className="amiibo-edit-display">{this.displayArray}</div>
           <div className="edit-boxes">
             <div className="edit-components">
               <AmiiboEditUpdate
@@ -57,7 +58,6 @@ class AmiiboEdit extends Component {
             </div>
           </div>
         </div>
-        <div className="amiibo-edit-display">{this.displayArray}</div>
       </div>
     );
   }

@@ -7,22 +7,7 @@ class EditUpdate extends Component {
   constructor(props) {
     super(props);
     this.state = { searchArray: [], editID: "", isLoading: false };
-    this.data = [{
-      amiiboSeries: "test",
-      character: "test",
-      gameSeries: "test",
-      image: "test",
-      name: "test",
-      release: [
-        {
-          au: "01-01-01",
-          eu: "01-01-01",
-          jp: "01-01-01",
-          na: "01-01-01"
-        }
-      ],
-      type: "test"
-    }]
+    this.data = {};
   }
 
   searchByID = event => {
@@ -40,7 +25,7 @@ class EditUpdate extends Component {
           searchArray: res,
           isLoading: false
         });
-        // console.log(this.state.searchArray)
+        // Sends res back to state in AmiiboSearch
         this.props.setSearchArray(res);
       })
       .catch(err => {
@@ -52,25 +37,88 @@ class EditUpdate extends Component {
     this.setState({ editID: event.target.value });
   };
 
+  setUpdateName = event => {
+    if (event.target.value !== "") {
+      this.data = { name: event.target.value };
+    } else {
+      delete this.data.name;
+    }
+  };
+
+  setUpdateChar = event => {
+    if (event.target.value !== "") {
+      this.data = { character: event.target.value };
+    } else {
+      delete this.data.character;
+    }
+  };
+
+  setUpdateSeries = event => {
+    if (event.target.value !== "") {
+      this.data = { amiiboSeries: event.target.value };
+    } else {
+      delete this.data.amiiboSeries;
+    }
+  };
+
+  setUpdateGameSeries = event => {
+    if (event.target.value !== "") {
+      this.data = { gameSeries: event.target.value };
+    } else {
+      delete this.data.gameSeries;
+    }
+  };
+
   render() {
     return (
       <div>
-        <div className="amiibo-search-ID form-group">
+        <div className="amiibo-search-ID">
+          Edit By ID
           <form className="form-inline">
-            <input
-              type="text"
-              placeholder="By ID"
-              onChange={this.setID}
-              className="form-control"
-            />
-            <div className="space-five"></div>
-            <button
-              className="btn btn-primary"
-              type="submit"
-              onClick={this.searchByID}
-            >
-              Search
-            </button>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="ID"
+                onChange={this.setID}
+                className="form-control"
+                style={{ width: "400px" }}
+              />
+              <div className="space-five"></div>
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={this.searchByID}
+              >
+                Edit
+              </button>
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Name"
+                onChange={this.setUpdateName}
+                className="form-control"
+                style={{ width: "400px" }}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Character"
+                onChange={this.setUpdateChar}
+                className="form-control"
+                style={{ width: "400px" }}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Game Series"
+                onChange={this.setUpdateGameSeries}
+                className="form-control"
+                style={{ width: "400px" }}
+              />
+            </div>
           </form>
         </div>
       </div>
