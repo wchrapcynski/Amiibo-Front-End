@@ -22,6 +22,10 @@ class AmiiboSearch extends Component {
 
   render() {
     this.displayArray = this.state.searchArray.map(item => {
+      let date = "";
+      if (item.releaseNA) {
+        date = item.releaseNA.replace("T00:00:00.000Z", "");
+      }
       return (
         <div key={item._id}>
           <Amiibo
@@ -30,6 +34,10 @@ class AmiiboSearch extends Component {
             gameSeries={item.gameSeries}
             character={item.character}
             type={item.type}
+            image={item.image}
+            id={item._id}
+            amiiboSeries={item.amiiboSeries}
+            releaseNA={date}
           ></Amiibo>
         </div>
       );

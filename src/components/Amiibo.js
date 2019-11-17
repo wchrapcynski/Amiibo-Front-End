@@ -2,13 +2,26 @@ import React from "react";
 import "./Amiibo.css";
 
 function Amiibo(props) {
-
     return (
-      <div className="amiibo-item">
-        <div>{props.name}</div>
-        <div>{props.gameSeries}</div>
-        <div>{props.character}</div>
-        <div>{props.type}</div>
+      <div className="amiibo-item card">
+        <div className="amiibo-image">
+          <img
+            src={props.image}
+            className="card-img-top"
+            alt="amiibo image"
+          ></img>
+        </div>
+        <div className="card-body">
+          <div className="card-text">Name: {props.name}</div>
+          <div className="card-text">Characpter: {props.character}</div>
+          <div className="card-text">Game Series: {props.gameSeries}</div>
+          <div className="card-text">Amiibo Series: {props.amiiboSeries}</div>
+          <div className="card-text">Type: {props.type}</div>
+          <div className="card-text">
+            Release Date: {props.releaseNA}
+          </div>
+          <div className="card-text">ID: {props.id}</div>
+        </div>
       </div>
     );
 }

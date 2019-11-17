@@ -6,8 +6,8 @@ import Amiibo from './Amiibo'
 class AmiiboList extends Component {
     constructor(props) {
         super(props);
-        this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 50}
-        this.itemsPerPage = 50;
+        this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 10}
+        this.itemsPerPage = 10;
         this.displayArray = [];
     }
 
@@ -31,6 +31,10 @@ class AmiiboList extends Component {
 
     render(){
         this.displayArray = this.props.amiibo.slice(this.state.pageStart,this.state.pageEnd).map(item => {
+          let date = "";
+          if (item.releaseNA) {
+            date = item.releaseNA.replace("T00:00:00.000Z", "");
+          }
           return (
             <div key={item._id}>
               <Amiibo
@@ -39,6 +43,10 @@ class AmiiboList extends Component {
                 gameSeries={item.gameSeries}
                 character={item.character}
                 type={item.type}
+                image={item.image}
+                id={item._id}
+                amiiboSeries={item.amiiboSeries}
+                releaseNA = {date}
               ></Amiibo>
             </div>
           );
