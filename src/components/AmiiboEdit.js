@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import "./Amiibo.css";
 import "./AmiiboEdit.css";
 import Amiibo from "./Amiibo";
-import AmiiboEditUpdate from "./Edits/AmiiboEditUpdate";
-import AmiiboEditCreate from "./Edits/AmiiboEditCreate";
+import AmiiboEditUpdateAdd from "./Edits/AmiiboEditUpdateAdd";
 import AmiiboEditDelete from "./Edits/AmiiboEditDelete";
 
 class AmiiboEdit extends Component {
@@ -32,7 +31,7 @@ class AmiiboEdit extends Component {
         </div>
       );
     });
-    console.log(this.state.searchArray);
+    // console.log(this.state.searchArray);
     return (
       <div>
         <div className="amiibo-edit">
@@ -40,21 +39,16 @@ class AmiiboEdit extends Component {
           <div className="amiibo-edit-display">{this.displayArray}</div>
           <div className="edit-boxes">
             <div className="edit-components">
-              <AmiiboEditUpdate
+              <AmiiboEditUpdateAdd
                 apiURL={this.props.apiURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
               />
-              {/* <AmiiboEditCreate
+              <AmiiboEditDelete
                 apiURL={this.props.apiURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
-              /> */}
-              {/* <AmiiboEditDelete
-                apiURL={this.props.apiURL}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
-              /> */}
+              />
             </div>
           </div>
         </div>
