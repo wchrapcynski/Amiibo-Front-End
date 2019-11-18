@@ -20,7 +20,7 @@ This project currently has full CRUD. It's a bit on the basic side right now but
 
 ## Future Updates
 
-Right now you have to do a lot of work manually. I hope to have things set up where you edit a particular listing by clicking on it. I would also like to have search functions on the main listing page. In the end, I think it should be a two page app. There also needs to be some basic sorting features. Right now only North American release dates are used and I'd like to be able to let a user switch to other locales.  
+Right now you have to do a lot of work manually. I hope to have things set up where you edit a particular listing by clicking on it. I would also like to have search functions on the main listing page. In the end, I think it should be a two page app. There also needs to be some basic sorting features. Right now only North American release dates are used and I'd like to be able to let a user switch to other locales. There are also some other search routes that are in the API that could be implemented.
 
 ## Author
 
