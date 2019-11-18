@@ -8,7 +8,11 @@ import AmiiboEdit from "./components/AmiiboEdit";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { amiibo: [], isLoading: false, apiURL: "http://localhost:3000/amiibo"  };
+    this.state = {
+      amiibo: [],
+      isLoading: false,
+      apiURL: "https://amiibo-api.herokuapp.com/amiibo"
+    };
   }
 
   // Fetch from API to get list
