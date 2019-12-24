@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Link } from "react-router-dom";
 import "./Amiibo.css";
 
 function Amiibo(props) {
@@ -17,10 +18,10 @@ function Amiibo(props) {
           <div className="card-text">Game Series: {props.gameSeries}</div>
           <div className="card-text">Amiibo Series: {props.amiiboSeries}</div>
           <div className="card-text">Type: {props.type}</div>
+          <div className="card-text">Release Date: {props.releaseNA}</div>
           <div className="card-text">
-            Release Date: {props.releaseNA}
+            ID: <Link to={{pathname:'/edit', amiiboId: {id: props.id} }}  >{props.id}</Link>
           </div>
-          <div className="card-text">ID: {props.id}</div>
         </div>
       </div>
     );

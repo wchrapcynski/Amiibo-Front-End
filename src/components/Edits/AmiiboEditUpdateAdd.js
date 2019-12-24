@@ -8,6 +8,7 @@ class EditUpdateAdd extends Component {
     super(props);
     this.state = { searchArray: [], editID: "", isLoading: false };
     this.data = {};
+    this.idPlaceholder = "ID (Required to edit/Leave empty to add)";
   }
 
   editByID = event => {
@@ -116,7 +117,33 @@ class EditUpdateAdd extends Component {
     }
   };
 
+  componentDidMount = () => {
+    if(this.props.id) {
+      this.setState({editID: this.props.id})
+      this.idPlaceholder = this.props.id;
+      fetch(this.props.apiURL + "/id/" + this.props.id, {
+        method: "PUT",
+        body: JSON.stringify(this.data),
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log("Got it!");
+          this.setState({
+            searchArray: res,
+            isLoading: false
+          });
+          // Sends res back to state in AmiiboSearch
+          this.props.setSearchArray(res);
+        })
+        .catch(err => {
+          console.log("We've got a problem, sir.", err);
+        });
+    }
+  }
+
   render() {
+    console.log(this.state.editID)
     return (
       <div>
         <div className="amiibo-search-ID">
@@ -125,7 +152,7 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
-                placeholder="ID (Required to edit/Leave empty to add)"
+                placeholder={this.idPlaceholder}
                 onChange={this.setID}
                 className="form-control"
                 style={{ width: "400px" }}

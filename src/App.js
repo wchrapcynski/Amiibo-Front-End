@@ -8,7 +8,7 @@ import AmiiboEdit from "./components/AmiiboEdit";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { amiibo: [], isLoading: false, apiURL: "http://localhost:3000/amiibo"  };
+    this.state = { amiibo: [], isLoading: false, apiURL: "http://localhost:8080/amiibo"  };
   }
 
   // Fetch from API to get list
@@ -49,7 +49,7 @@ class App extends Component {
             <Link className="nav-item nav-link" to="/search">
               Search
             </Link>
-            <Link className="nav-item nav-link" to="/edit">
+            <Link className="nav-item nav-link" to="/edit/">
               Edit
             </Link>
           </nav>

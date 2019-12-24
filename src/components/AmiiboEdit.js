@@ -11,6 +11,7 @@ class AmiiboEdit extends Component {
     super(props);
     this.state = { searchArray: [] };
     this.displayArray = [];
+    this.id = this.props.location.amiiboId;
   }
 
   setSearchArray = res => {
@@ -39,7 +40,6 @@ class AmiiboEdit extends Component {
         </div>
       );
     });
-    // console.log(this.state.searchArray);
     return (
       <div>
         <div className="amiibo-edit">
@@ -51,6 +51,7 @@ class AmiiboEdit extends Component {
                 apiURL={this.props.apiURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
+                id={this.id ? this.id.id : null}
               />
               <hr />
               Delete can not be undone!

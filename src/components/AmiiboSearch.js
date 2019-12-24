@@ -47,6 +47,7 @@ class AmiiboSearch extends Component {
       <div>
         <div className="amiibo-search">
           <h1>Amiibo Search</h1>
+          <h6>Search is case sensitive</h6>
           <div className="search-boxes">
             <div className="search-boxes-left">
               <AmiiboSearchName
