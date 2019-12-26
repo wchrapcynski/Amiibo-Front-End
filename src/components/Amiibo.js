@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Amiibo.css";
 
 function Amiibo(props) {
@@ -8,7 +9,7 @@ function Amiibo(props) {
           <img
             src={props.image}
             className="card-img-top"
-            alt="amiibo image"
+            alt=""
           ></img>
         </div>
         <div className="card-body">
@@ -17,10 +18,10 @@ function Amiibo(props) {
           <div className="card-text">Game Series: {props.gameSeries}</div>
           <div className="card-text">Amiibo Series: {props.amiiboSeries}</div>
           <div className="card-text">Type: {props.type}</div>
+          <div className="card-text">Release Date: {props.releaseNA}</div>
           <div className="card-text">
-            Release Date: {props.releaseNA}
+            ID: <Link to={{pathname:'/edit', amiiboId: {id: props.id} }} onClick={props.editPage} >{props.id}</Link>
           </div>
-          <div className="card-text">ID: {props.id}</div>
         </div>
       </div>
     );

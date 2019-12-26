@@ -38,6 +38,8 @@ class AmiiboList extends Component {
           return (
             <div key={item._id}>
               <Amiibo
+                {...this.props}
+                {...this.state}
                 className="amiibo-name"
                 name={item.name}
                 gameSeries={item.gameSeries}
