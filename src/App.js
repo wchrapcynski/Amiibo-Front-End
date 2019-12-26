@@ -11,12 +11,8 @@ class App extends Component {
     this.state = {
       amiibo: [],
       isLoading: false,
-<<<<<<< HEAD
-      apiURL: "https://amiibo-api.herokuapp.com/amiibo"
-=======
       apiURL: "https://amiibo-api.herokuapp.com/amiibo",
       edit: false
->>>>>>> master
     };
   }
 
