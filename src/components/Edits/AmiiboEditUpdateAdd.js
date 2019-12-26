@@ -8,7 +8,7 @@ class EditUpdateAdd extends Component {
     super(props);
     this.state = { searchArray: [], editID: "", isLoading: false };
     this.data = {};
-    this.idPlaceholder = "ID (Required to edit/Leave empty to add)";
+    this.idPlaceholder = "ID (Required)";
   }
 
   editByID = event => {
@@ -148,7 +148,7 @@ class EditUpdateAdd extends Component {
         <div className="amiibo-search-ID">
           {this.props.edit ? "Edit" : "Add"} By ID
           <form className="form-inline">
-            <div className="form-group">
+            <div className={this.props.edit ? "form-group" : "hide"}>
               <input
                 type="text"
                 placeholder={this.idPlaceholder}
@@ -160,9 +160,9 @@ class EditUpdateAdd extends Component {
               <button
                 className="btn btn-primary"
                 type="submit"
-                onClick={this.props.edit ? this.editByID : this.AddNew}
+                onClick={this.editByID}
               >
-                {this.props.edit ? "Edit" : "Add"}
+                Edit
               </button>
             </div>
             <div className="form-group">
@@ -173,6 +173,14 @@ class EditUpdateAdd extends Component {
                 className="form-control"
                 style={{ width: "400px" }}
               />
+              <div className="space-five"></div>
+              <button
+                className={`btn btn-primary ${this.props.edit ? "hide" : "  "}`}
+                type="submit"
+                onClick={this.AddNew}
+              >
+                Add
+              </button>
             </div>
             <div className="form-group">
               <input

@@ -44,22 +44,24 @@ class AmiiboEdit extends Component {
       <div>
         <div className="amiibo-edit">
           <h1>Amiibo Edit</h1>
-          <div className="amiibo-edit-display">{this.displayArray}</div>
-          <div className="edit-boxes">
-            <div className="edit-components">
-              <AmiiboEditUpdateAdd
-                {...this.props}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
-                id={this.id ? this.id.id : null}
-              />
-              <hr />
-              Delete can not be undone!
-              <AmiiboEditDelete
-                apiURL={this.props.apiURL}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
-              />
+          <div className="edit-main">
+            <div className="amiibo-edit-display">{this.state.searchArray.length !== 0 ? this.displayArray : this.props.edit ? "Enter an ID" : "Fill in information"}</div>
+            <div className="edit-boxes">
+              <div className="edit-components">
+                <AmiiboEditUpdateAdd
+                  {...this.props}
+                  array={this.state.searchArray}
+                  setSearchArray={this.setSearchArray}
+                  id={this.id ? this.id.id : null}
+                />
+                <hr />
+                Delete can not be undone!
+                <AmiiboEditDelete
+                  apiURL={this.props.apiURL}
+                  array={this.state.searchArray}
+                  setSearchArray={this.setSearchArray}
+                />
+              </div>
             </div>
           </div>
         </div>

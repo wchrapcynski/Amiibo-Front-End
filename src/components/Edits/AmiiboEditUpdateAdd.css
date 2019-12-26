@@ -6,3 +6,7 @@
 .form-group {
     padding: 5px 0;
 }
+
+.hide {
+    display: none;
+}
