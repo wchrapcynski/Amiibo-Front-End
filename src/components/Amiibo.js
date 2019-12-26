@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Amiibo.css";
 
 function Amiibo(props) {
@@ -9,7 +9,7 @@ function Amiibo(props) {
           <img
             src={props.image}
             className="card-img-top"
-            alt="amiibo image"
+            alt=""
           ></img>
         </div>
         <div className="card-body">
