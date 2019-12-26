@@ -143,11 +143,10 @@ class EditUpdateAdd extends Component {
   }
 
   render() {
-    console.log(this.state.editID)
     return (
       <div>
         <div className="amiibo-search-ID">
-          Edit/Add By ID
+          {this.props.edit ? "Edit" : "Add"} By ID
           <form className="form-inline">
             <div className="form-group">
               <input
@@ -161,17 +160,9 @@ class EditUpdateAdd extends Component {
               <button
                 className="btn btn-primary"
                 type="submit"
-                onClick={this.editByID}
+                onClick={this.props.edit ? this.editByID : this.AddNew}
               >
-                Edit
-              </button>
-              <div className="space-five"></div>
-              <button
-                className="btn btn-primary"
-                type="submit"
-                onClick={this.AddNew}
-              >
-                Add
+                {this.props.edit ? "Edit" : "Add"}
               </button>
             </div>
             <div className="form-group">

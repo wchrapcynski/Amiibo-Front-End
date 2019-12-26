@@ -20,7 +20,7 @@ function Amiibo(props) {
           <div className="card-text">Type: {props.type}</div>
           <div className="card-text">Release Date: {props.releaseNA}</div>
           <div className="card-text">
-            ID: <Link to={{pathname:'/edit', amiiboId: {id: props.id} }}  >{props.id}</Link>
+            ID: <Link to={{pathname:'/edit', amiiboId: {id: props.id} }} onClick={props.editPage} >{props.id}</Link>
           </div>
         </div>
       </div>

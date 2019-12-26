@@ -48,7 +48,7 @@ class AmiiboEdit extends Component {
           <div className="edit-boxes">
             <div className="edit-components">
               <AmiiboEditUpdateAdd
-                apiURL={this.props.apiURL}
+                {...this.props}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
                 id={this.id ? this.id.id : null}

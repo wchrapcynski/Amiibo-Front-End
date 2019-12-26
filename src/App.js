@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       amiibo: [],
       isLoading: false,
-      apiURL: "https://amiibo-api.herokuapp.com/amiibo"
+      apiURL: "https://amiibo-api.herokuapp.com/amiibo",
+      edit: false
     };
   }
 
@@ -31,6 +32,14 @@ class App extends Component {
         console.log("We've got a problem, sir.", err)
       });
   };
+
+  editPage = () => {
+    this.setState({edit: true })
+  }
+
+  addPage = () => {
+    this.setState({ edit: false });
+  }
 
   componentDidMount() {
     this.grabAmiiboData();
@@ -53,8 +62,11 @@ class App extends Component {
             <Link className="nav-item nav-link" to="/search">
               Search
             </Link>
-            <Link className="nav-item nav-link" to="/edit/">
+            <Link className="nav-item nav-link" to="/edit/" onClick={this.editPage}>
               Edit
+            </Link>
+            <Link className="nav-item nav-link" to="/add/" onClick={this.addPage}>
+              Add
             </Link>
           </nav>
           <div className="amiibo-list">
@@ -62,7 +74,7 @@ class App extends Component {
               path="/"
               exact
               render={routerProps => (
-                <AmiiboList {...routerProps} {...this.state} />
+                <AmiiboList {...routerProps} {...this.state} editPage={this.editPage} />
               )}
             />
             <Route
@@ -73,6 +85,12 @@ class App extends Component {
             />
             <Route
               path="/edit"
+              render={routerProps => (
+                <AmiiboEdit {...routerProps} {...this.state} />
+              )}
+            />
+            <Route
+              path="/add"
               render={routerProps => (
                 <AmiiboEdit {...routerProps} {...this.state} />
               )}
