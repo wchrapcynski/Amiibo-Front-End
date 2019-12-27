@@ -17,9 +17,9 @@ class App extends Component {
   }
 
   // Fetch from API to get list
-  grabAmiiboData = () => {
+  grabAmiiboData = (url) => {
     this.setState({ isLoading: true });
-    fetch(this.state.apiURL, { })
+    fetch(url, { })
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
@@ -42,14 +42,17 @@ class App extends Component {
   }
 
   sortOrder = () =>{
-    this.state.apiURL === "https://amiibo-api.herokuapp.com/amiibo/sorta" ?
-    this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sortd"}) :
-    this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sorta"})
-    this.grabAmiiboData();
+    if(this.state.apiURL === "https://amiibo-api.herokuapp.com/amiibo/sorta") {
+      this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sortd"});
+      this.grabAmiiboData("https://amiibo-api.herokuapp.com/amiibo/sortd");
+    } else {
+      this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sorta"});
+      this.grabAmiiboData("https://amiibo-api.herokuapp.com/amiibo/sorta");
+    }
   }
 
-  componentDidMount() {
-    this.grabAmiiboData();
+  componentDidMount = () => {
+    this.grabAmiiboData(this.state.apiURL);
   }
 
   render() {
@@ -69,10 +72,18 @@ class App extends Component {
             <Link className="nav-item nav-link" to="/search">
               Search
             </Link>
-            <Link className="nav-item nav-link" to="/edit/" onClick={this.editPage}>
+            <Link
+              className="nav-item nav-link"
+              to="/edit/"
+              onClick={this.editPage}
+            >
               Edit
             </Link>
-            <Link className="nav-item nav-link" to="/add/" onClick={this.addPage}>
+            <Link
+              className="nav-item nav-link"
+              to="/add/"
+              onClick={this.addPage}
+            >
               Add
             </Link>
           </nav>
@@ -81,7 +92,12 @@ class App extends Component {
               path="/"
               exact
               render={routerProps => (
-                <AmiiboList {...routerProps} {...this.state} editPage={this.editPage} sortOrder={this.sortOrder} />
+                <AmiiboList
+                  {...routerProps}
+                  {...this.state}
+                  editPage={this.editPage}
+                  sortOrder={this.sortOrder}
+                />
               )}
             />
             <Route
