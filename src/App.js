@@ -14,6 +14,7 @@ class App extends Component {
       apiURL: "https://amiibo-api.herokuapp.com/amiibo/sorta",
       edit: false
     };
+    this.baseURL = "https://amiibo-api.herokuapp.com/amiibo/"
   }
 
   // Fetch from API to get list
@@ -42,12 +43,12 @@ class App extends Component {
   }
 
   sortOrder = () =>{
-    if(this.state.apiURL === "https://amiibo-api.herokuapp.com/amiibo/sorta") {
-      this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sortd"});
-      this.grabAmiiboData("https://amiibo-api.herokuapp.com/amiibo/sortd");
+    if(this.state.apiURL === `${this.baseURL}sorta`) {
+      this.setState({apiURL: `${this.baseURL}sortd`});
+      this.grabAmiiboData(`${this.baseURL}sortd`);
     } else {
-      this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sorta"});
-      this.grabAmiiboData("https://amiibo-api.herokuapp.com/amiibo/sorta");
+      this.setState({apiURL: `${this.baseURL}sorta`});
+      this.grabAmiiboData(`${this.baseURL}sorta`);
     }
   }
 

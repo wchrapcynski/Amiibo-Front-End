@@ -63,12 +63,15 @@ class AmiiboList extends Component {
                     className="btn btn-primary"
                     onClick={this.props.sortOrder}
                   >
-                    {this.props.apiURL ===
-                    "https://amiibo-api.herokuapp.com/amiibo/sorta" ? (
-                      <i className="fa fa-arrow-up" aria-hidden="true"></i>
-                    ) : (
-                      <i className="fa fa-arrow-down" aria-hidden="true"></i>
-                    )}
+                    <i
+                      className={
+                        this.props.apiURL ===
+                        "https://amiibo-api.herokuapp.com/amiibo/sorta"
+                          ? "fa fa-arrow-up"
+                          : "fa fa-arrow-down"
+                      }
+                      aria-hidden="true"
+                    ></i>
                   </button>
                   <div className="space-five"></div>
                   <button
