@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       amiibo: [],
       isLoading: false,
-      apiURL: "https://amiibo-api.herokuapp.com/amiibo",
+      apiURL: "https://amiibo-api.herokuapp.com/amiibo/sorta",
       edit: false
     };
   }
@@ -39,6 +39,13 @@ class App extends Component {
 
   addPage = () => {
     this.setState({ edit: false });
+  }
+
+  sortOrder = () =>{
+    this.state.apiURL === "https://amiibo-api.herokuapp.com/amiibo/sorta" ?
+    this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sortd"}) :
+    this.setState({apiURL: "https://amiibo-api.herokuapp.com/amiibo/sorta"})
+    this.grabAmiiboData();
   }
 
   componentDidMount() {
@@ -74,7 +81,7 @@ class App extends Component {
               path="/"
               exact
               render={routerProps => (
-                <AmiiboList {...routerProps} {...this.state} editPage={this.editPage} />
+                <AmiiboList {...routerProps} {...this.state} editPage={this.editPage} sortOrder={this.sortOrder} />
               )}
             />
             <Route

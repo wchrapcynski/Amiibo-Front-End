@@ -60,6 +60,15 @@ class AmiiboList extends Component {
                 <h1>Amiibo List</h1>
                 <div className="page-nav">
                   <button
+                    className="btn btn-primary"
+                    onClick={this.props.sortOrder}
+                  >
+                    {this.props.apiURL === "https://amiibo-api.herokuapp.com/amiibo/sorta" ? 
+                    "Sort Ascending" : 
+                    "Sort Descending"}
+                  </button>
+                  <div className="space-five"></div>
+                  <button
                     className="page-nav-previous btn btn-primary"
                     onClick={this.previousPage}
                   >
