@@ -2,6 +2,13 @@ h1 {
     text-align: center;
 }
 
+.page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
 .amiibo-list, .page-nav {
     display: flex;
     justify-content: center;

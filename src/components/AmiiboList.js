@@ -6,16 +6,16 @@ import Amiibo from './Amiibo'
 class AmiiboList extends Component {
     constructor(props) {
         super(props);
-        this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 10}
-        this.itemsPerPage = 10;
+        this.state = { amiiboArray: [], pageNumber: 1, pageStart: 0, pageEnd: 10, currentPage: 1}
         this.displayArray = [];
     }
 
     nextPage = () => {
         if(this.state.pageEnd < this.props.amiibo.length) {
             this.setState({
-            pageStart: this.state.pageStart + this.itemsPerPage,
-            pageEnd: this.state.pageEnd + this.itemsPerPage
+            pageStart: this.state.pageStart + this.props.itemsPerPage,
+            pageEnd: this.state.pageEnd + this.props.itemsPerPage,
+            currentPage: this.state.currentPage + 1
             });
         }
     }
@@ -23,8 +23,9 @@ class AmiiboList extends Component {
     previousPage = () => {
         if(this.state.pageStart > 0) {
             this.setState({
-              pageStart: this.state.pageStart - this.itemsPerPage,
-              pageEnd: this.state.pageEnd - this.itemsPerPage
+              pageStart: this.state.pageStart - this.props.itemsPerPage,
+              pageEnd: this.state.pageEnd - this.props.itemsPerPage,
+              currentPage: this.state.currentPage - 1
             });
         }
     }
@@ -87,6 +88,7 @@ class AmiiboList extends Component {
                   >
                     Next
                   </button>
+                  <div className="page-numbers">{this.state.currentPage} of {this.props.pages}</div>
                 </div>
                 <div className="amiibo-list">{this.displayArray}</div>
                 <div className="page-nav">

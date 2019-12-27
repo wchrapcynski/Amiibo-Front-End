@@ -12,9 +12,11 @@ class App extends Component {
       amiibo: [],
       isLoading: false,
       apiURL: "https://amiibo-api.herokuapp.com/amiibo/sorta",
-      edit: false
+      edit: false,
+      itemsPerPage: 10
     };
     this.baseURL = "https://amiibo-api.herokuapp.com/amiibo/"
+    this.pages = 0;
   }
 
   // Fetch from API to get list
@@ -57,6 +59,7 @@ class App extends Component {
   }
 
   render() {
+    this.pages = this.state.amiibo.length / this.state.itemsPerPage;
     if(this.state.isLoading === true) {
       return(
         <div>
@@ -98,6 +101,7 @@ class App extends Component {
                   {...this.state}
                   editPage={this.editPage}
                   sortOrder={this.sortOrder}
+                  pages={this.pages}
                 />
               )}
             />
