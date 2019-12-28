@@ -14,7 +14,7 @@ class EditUpdateAdd extends Component {
   editByID = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/id/" + this.state.editID, {
+    fetch(this.props.baseURL + "id/" + this.state.editID, {
       method: "PUT",
       body: JSON.stringify(this.data),
       headers: { "Content-Type": "application/json" }
@@ -37,7 +37,7 @@ class EditUpdateAdd extends Component {
   AddNew = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL, {
+    fetch(this.props.baseURL, {
       method: "POST",
       body: JSON.stringify(this.data),
       headers: { "Content-Type": "application/json" }
@@ -121,7 +121,7 @@ class EditUpdateAdd extends Component {
     if(this.props.id) {
       this.setState({editID: this.props.id})
       this.idPlaceholder = this.props.id;
-      fetch(this.props.apiURL + "/id/" + this.props.id, {
+      fetch(this.props.baseURL + "id/" + this.props.id, {
         method: "PUT",
         body: JSON.stringify(this.data),
         headers: { "Content-Type": "application/json" }
@@ -143,6 +143,7 @@ class EditUpdateAdd extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <div className="amiibo-search-ID">
