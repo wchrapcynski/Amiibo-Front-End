@@ -13,7 +13,7 @@ class EditDelete extends Component {
   delete = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/id/" + this.state.editID, {
+    fetch(this.props.baseURL + "id/" + this.state.editID, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" }
     })
@@ -46,7 +46,7 @@ class EditDelete extends Component {
               placeholder="ID (Required to delete)"
               onChange={this.setID}
               className="form-control"
-              style={{ width: "400px" }}
+              style={{ width: "350px" }}
             />
             <div className="space-five"></div>
             <button

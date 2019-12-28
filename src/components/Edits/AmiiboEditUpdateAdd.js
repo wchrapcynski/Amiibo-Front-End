@@ -155,7 +155,7 @@ class EditUpdateAdd extends Component {
                 placeholder={this.idPlaceholder}
                 onChange={this.setID}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
               <div className="space-five"></div>
               <button
@@ -172,7 +172,7 @@ class EditUpdateAdd extends Component {
                 placeholder="Name"
                 onChange={this.setUpdateName}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
               <div className="space-five"></div>
               <button
@@ -189,7 +189,7 @@ class EditUpdateAdd extends Component {
                 placeholder="Character"
                 onChange={this.setUpdateChar}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
             </div>
             <div className="form-group">
@@ -198,7 +198,7 @@ class EditUpdateAdd extends Component {
                 placeholder="Game Series"
                 onChange={this.setUpdateGameSeries}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
             </div>
             <div className="form-group">
@@ -207,7 +207,7 @@ class EditUpdateAdd extends Component {
                 placeholder="Amiibo Series"
                 onChange={this.setUpdateAmiiboSeries}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
             </div>
             <div className="form-group">
@@ -216,7 +216,7 @@ class EditUpdateAdd extends Component {
                 placeholder="Amiibo Type (Card/Figure)"
                 onChange={this.setUpdateAmiiboType}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
             </div>
             <div className="form-group">
@@ -225,7 +225,7 @@ class EditUpdateAdd extends Component {
                 placeholder="Image URL"
                 onChange={this.setUpdateImageURL}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
             </div>
             <div className="form-group">
@@ -234,7 +234,7 @@ class EditUpdateAdd extends Component {
                 placeholder="NA Release Date (format: YYYY-MM-DD)"
                 onChange={this.setUpdateNArelease}
                 className="form-control"
-                style={{ width: "400px" }}
+                style={{ width: "350px" }}
               />
             </div>
           </form>
