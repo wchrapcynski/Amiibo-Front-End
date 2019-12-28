@@ -10,7 +10,7 @@
 }
 
 .edit-components {
-    width: 430px;
+    width: 350px;
 }
 
 .amiibo-edit-display {
@@ -18,4 +18,9 @@
     justify-content: center;
     flex-wrap: wrap;
     height: auto;
+}
+
+.edit-main {
+    display: flex;
+    flex-direction: column;
 }

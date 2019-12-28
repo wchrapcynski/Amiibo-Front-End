@@ -155,7 +155,7 @@ class EditUpdateAdd extends Component {
                 placeholder={this.idPlaceholder}
                 onChange={this.setID}
                 className="form-control"
-                style={{ width: "350px" }}
+                style={{ width: "290px" }}
               />
               <div className="space-five"></div>
               <button
@@ -172,7 +172,7 @@ class EditUpdateAdd extends Component {
                 placeholder="Name"
                 onChange={this.setUpdateName}
                 className="form-control"
-                style={{ width: "350px" }}
+                style={this.props.edit ? {width: "350px"} : {width: "290px"} }
               />
               <div className="space-five"></div>
               <button

@@ -45,7 +45,7 @@ class AmiiboEdit extends Component {
         <div className="amiibo-edit">
           <h1>Amiibo Edit</h1>
           <div className="edit-main">
-            <div className="amiibo-edit-display">{this.state.searchArray.length !== 0 ? this.displayArray : this.props.edit ? "Enter an ID" : "Fill in information"}</div>
+            <div className="amiibo-edit-display">{this.state.searchArray.length !== 0 ? this.displayArray : this.props.edit ? "Enter an ID and click 'Edit'" : "Fill in information and click 'Add'"}</div>
             <div className="edit-boxes">
               <div className="edit-components">
                 <AmiiboEditUpdateAdd

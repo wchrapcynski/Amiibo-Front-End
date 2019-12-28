@@ -46,7 +46,7 @@ class EditDelete extends Component {
               placeholder="ID (Required to delete)"
               onChange={this.setID}
               className="form-control"
-              style={{ width: "350px" }}
+              style={{ width: "275px" }}
             />
             <div className="space-five"></div>
             <button
