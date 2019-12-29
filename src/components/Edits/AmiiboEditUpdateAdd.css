@@ -5,6 +5,9 @@
 
 .form-group {
     padding: 5px 0;
+    display: flex;
+    width: 100%;
+    max-width: 350px;
 }
 
 .hide {

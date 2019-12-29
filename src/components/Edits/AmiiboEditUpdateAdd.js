@@ -172,11 +172,13 @@ class EditUpdateAdd extends Component {
                 placeholder="Name"
                 onChange={this.setUpdateName}
                 className="form-control"
-                style={this.props.edit ? {width: "350px"} : {width: "290px"} }
+                style={
+                  this.props.edit ? { width: "350px" } : { width: "289px" }
+                }
               />
               <div className="space-five"></div>
               <button
-                className={`btn btn-primary ${this.props.edit ? "hide" : "  "}`}
+                className={`btn btn-primary ${this.props.edit ? "hide" : ""}`}
                 type="submit"
                 onClick={this.AddNew}
               >
