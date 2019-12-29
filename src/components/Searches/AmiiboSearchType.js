@@ -40,7 +40,7 @@ class AmiiboSearchType extends Component {
               type="text"
               placeholder="By Type"
               onChange={this.setType}
-              className="form-control"
+              className="form-control input-search"
             />
             <div className="space-five"></div>
             <button

@@ -40,7 +40,7 @@ class AmiiboSearchReleaseNA extends Component {
               type="text"
               placeholder="By Release Date"
               onChange={this.setRelease}
-              className="form-control"
+              className="form-control input-search"
             />
             <div className="space-five"></div>
             <button

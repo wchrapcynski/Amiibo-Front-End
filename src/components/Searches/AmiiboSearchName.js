@@ -40,7 +40,7 @@ class AmiiboSearchName extends Component {
               type="text"
               placeholder="By Name"
               onChange={this.setName}
-              className="form-control"
+              className="form-control input-search"
             />
             <div className="space-five"></div>
             <button
