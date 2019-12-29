@@ -22,3 +22,14 @@
 h6 {
     text-align: center;
 }
+
+@media only screen and (max-width: 650px) {
+    .search-boxes {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    input {
+        width: 230px !important;
+    }
+}
