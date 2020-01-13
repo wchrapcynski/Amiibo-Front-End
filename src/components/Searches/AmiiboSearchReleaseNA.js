@@ -12,7 +12,7 @@ class AmiiboSearchReleaseNA extends Component {
   searchByRelease = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/releaseNA/" + this.state.searchRelease, {})
+    fetch(this.props.apiURL + "releaseNA/" + this.state.searchRelease, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");

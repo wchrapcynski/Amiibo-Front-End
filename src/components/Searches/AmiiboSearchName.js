@@ -12,7 +12,7 @@ class AmiiboSearchName extends Component {
   searchByName = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/name/" + this.state.searchName, {})
+    fetch(this.props.apiURL + "name/" + this.state.searchName, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");

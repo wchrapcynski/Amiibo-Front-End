@@ -12,7 +12,7 @@ class AmiiboSearchID extends Component {
   searchByID = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/id/" + this.state.searchID, {})
+    fetch(this.props.apiURL + "id/" + this.state.searchID, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");

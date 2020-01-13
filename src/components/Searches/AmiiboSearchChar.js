@@ -12,7 +12,7 @@ class AmiiboSearchChar extends Component {
   searchByCharacter = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/character/" + this.state.searchCharacter, {})
+    fetch(this.props.apiURL + "character/" + this.state.searchCharacter, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");

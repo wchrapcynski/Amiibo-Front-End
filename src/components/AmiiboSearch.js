@@ -51,29 +51,29 @@ class AmiiboSearch extends Component {
           <div className="search-boxes">
             <div className="search-boxes-left">
               <AmiiboSearchName
-                apiURL={this.props.apiURL}
+                apiURL={this.props.baseURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
               />
               <AmiiboSearchChar
-                apiURL={this.props.apiURL}
+                apiURL={this.props.baseURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
               />
               <AmiiboSearchType
-                apiURL={this.props.apiURL}
+                apiURL={this.props.baseURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
               />
             </div>
             <div className="search-boxes-right">
               <AmiiboSearchID
-                apiURL={this.props.apiURL}
+                apiURL={this.props.baseURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
               />
               <AmiiboSearchReleaseNA
-                apiURL={this.props.apiURL}
+                apiURL={this.props.baseURL}
                 array={this.state.searchArray}
                 setSearchArray={this.setSearchArray}
               />

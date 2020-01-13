@@ -12,7 +12,7 @@ class AmiiboSearchType extends Component {
   searchByType = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "/type/" + this.state.searchType, {})
+    fetch(this.props.apiURL + "type/" + this.state.searchType, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
