@@ -3,7 +3,7 @@
 ![example image](images/example.png)
 
 ## Description
-This is the front end for the [Amiibo API](https://github.com/wchrapcynski/Amiibo-API) that I put together. It completes the first ever MERN stack application that I've built. This version is set up to run via the local version of the API (master branch) as well as the version running on Heroku (deployment branch). [Bootstrap](https://getbootstrap.com/) was used as a basis for CSS. If you'd like to see the code for the API, you can visit there repo here: https://github.com/wchrapcynski/Amiibo-API
+This is the front end for the [Amiibo API](https://github.com/wchrapcynski/Amiibo-API) that I put together. It completes the first ever MERN stack application that I've built. This version is set up to run via the local version of the API (master branch) as well as the version running on Heroku (deployment branch). [Bootstrap](https://getbootstrap.com/) was used as a basis for CSS. If you'd like to see the code for the API, you can visit the repo here: https://github.com/wchrapcynski/Amiibo-API
 
 ## Requirements
 
