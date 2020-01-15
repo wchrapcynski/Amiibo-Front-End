@@ -13,10 +13,10 @@ function Amiibo(props) {
           ></img>
         </div>
         <div className="card-body">
-          {/* <div className="card-text">Name: {props.name}</div> */}
-          <div className="card-text">Characpter: {props.character}</div>
+          <div className="card-text">Name: {props.name}</div>
+          <div className="card-text">Character: {props.character}</div>
           <div className="card-text">Series: {props.gameSeries}</div>
-          {/* <div className="card-text">Amiibo Series: {props.amiiboSeries}</div> */}
+          <div className="card-text">Amiibo Series: {props.amiiboSeries}</div>
           <div className="card-text">Type: {props.type}</div>
           <div className="card-text">Release Date: {props.releaseNA}</div>
           <div className="card-text">
