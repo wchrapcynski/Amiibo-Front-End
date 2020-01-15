@@ -55,7 +55,6 @@ class AmiiboEdit extends Component {
                   id={this.id ? this.id.id : null}
                 />
                 <hr />
-                Delete can not be undone!
                 <AmiiboEditDelete
                   apiURL={this.props.baseURL}
                   array={this.state.searchArray}
