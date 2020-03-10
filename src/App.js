@@ -36,6 +36,10 @@ class App extends Component {
       });
   };
 
+  setItemsPerPage = (event) => [
+    this.setState({itemsPerPage: event.target.value})
+  ]
+
   editPage = () => {
     this.setState({ edit: true });
   };
@@ -59,7 +63,8 @@ class App extends Component {
   };
 
   render() {
-    this.pages = this.state.amiibo.length / this.state.itemsPerPage;
+    this.state.itemsPerPage ? 
+    this.pages = parseInt(this.state.amiibo.length / this.state.itemsPerPage) : this.pages = 0;
     if (this.state.isLoading === true) {
       return (
         <div>
@@ -97,6 +102,7 @@ class App extends Component {
                 <AmiiboList
                   {...routerProps}
                   {...this.state}
+                  setItemsPerPage={this.setItemsPerPage}
                   editPage={this.editPage}
                   sortOrder={this.sortOrder}
                   pages={this.pages}

@@ -38,7 +38,7 @@ class AmiiboSearchReleaseNA extends Component {
           <form className="form-inline">
             <input
               type="text"
-              placeholder="By Release Date"
+              placeholder="By Date YYYY-MM-DD"
               onChange={this.setRelease}
               className="form-control input-search"
             />

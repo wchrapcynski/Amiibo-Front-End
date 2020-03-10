@@ -2,11 +2,19 @@ h1 {
     text-align: center;
 }
 
-.page-numbers {
+.page-numbers, .page-items {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px;
+}
+
+.page-numbers {
+    margin: 0 5px 0 10px;
+}
+
+.page-items input {
+    width: 30px;
+    margin: 0 5px;
 }
 
 .amiibo-list, .page-nav {
