@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import "./Amiibo.css";
-import "./AmiiboSearch.css"
-import Amiibo from "./Amiibo"
+import "./AmiiboSearch.css";
+import Amiibo from "./Amiibo";
 import AmiiboSearchName from "./Searches/AmiiboSearchName";
 import AmiiboSearchChar from "./Searches/AmiiboSearchChar";
 import AmiiboSearchType from "./Searches/AmiiboSearchType";
@@ -16,9 +16,9 @@ class AmiiboSearch extends Component {
     this.displayArray = [];
   }
 
-  setSearchArray = (res) => {
-    this.setState({searchArray: res})
-  }
+  setSearchArray = res => {
+    this.setState({ searchArray: res });
+  };
 
   render() {
     this.displayArray = this.state.searchArray.map(item => {
@@ -37,12 +37,11 @@ class AmiiboSearch extends Component {
             image={item.image}
             id={item._id}
             amiiboSeries={item.amiiboSeries}
-            releaseNA={date}
-          ></Amiibo>
+            releaseNA={date}></Amiibo>
         </div>
       );
     });
-    
+
     return (
       <div>
         <div className="amiibo-search">
@@ -85,6 +84,5 @@ class AmiiboSearch extends Component {
     );
   }
 }
- 
 
 export default AmiiboSearch;

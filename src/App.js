@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-import './App.css';
-import AmiiboList from './components/AmiiboList'
+import "./App.css";
+import AmiiboList from "./components/AmiiboList";
 import AmiiboSearch from "./components/AmiiboSearch";
 import AmiiboEdit from "./components/AmiiboEdit";
 
@@ -20,9 +20,9 @@ class App extends Component {
   }
 
   // Fetch from API to get list
-  grabAmiiboData = (url) => {
+  grabAmiiboData = url => {
     this.setState({ isLoading: true });
-    fetch(url, { })
+    fetch(url, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
@@ -32,40 +32,40 @@ class App extends Component {
         });
       })
       .catch(err => {
-        console.log("We've got a problem, sir.", err)
+        console.log("We've got a problem, sir.", err);
       });
   };
 
   editPage = () => {
-    this.setState({edit: true })
-  }
+    this.setState({ edit: true });
+  };
 
   addPage = () => {
     this.setState({ edit: false });
-  }
+  };
 
-  sortOrder = () =>{
-    if(this.state.apiURL === `${this.state.baseURL}sorta`) {
-      this.setState({apiURL: `${this.state.baseURL}sortd`});
+  sortOrder = () => {
+    if (this.state.apiURL === `${this.state.baseURL}sorta`) {
+      this.setState({ apiURL: `${this.state.baseURL}sortd` });
       this.grabAmiiboData(`${this.state.baseURL}sortd`);
     } else {
-      this.setState({apiURL: `${this.state.baseURL}sorta`});
+      this.setState({ apiURL: `${this.state.baseURL}sorta` });
       this.grabAmiiboData(`${this.state.baseURL}sorta`);
     }
-  }
+  };
 
   componentDidMount = () => {
     this.grabAmiiboData(this.state.apiURL);
-  }
+  };
 
   render() {
     this.pages = this.state.amiibo.length / this.state.itemsPerPage;
-    if(this.state.isLoading === true) {
-      return(
+    if (this.state.isLoading === true) {
+      return (
         <div>
           <h1>Loading</h1>
         </div>
-      )
+      );
     } else {
       return (
         <div>
@@ -79,15 +79,13 @@ class App extends Component {
             <Link
               className="nav-item nav-link"
               to="/edit/"
-              onClick={this.editPage}
-            >
+              onClick={this.editPage}>
               Edit
             </Link>
             <Link
               className="nav-item nav-link"
               to="/add/"
-              onClick={this.addPage}
-            >
+              onClick={this.addPage}>
               Add
             </Link>
           </nav>
