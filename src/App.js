@@ -36,10 +36,6 @@ class App extends Component {
       });
   };
 
-  setItemsPerPage = (event) => [
-    this.setState({itemsPerPage: event.target.value})
-  ]
-
   editPage = () => {
     this.setState({ edit: true });
   };
@@ -63,8 +59,7 @@ class App extends Component {
   };
 
   render() {
-    this.state.itemsPerPage ? 
-    this.pages = parseInt(this.state.amiibo.length / this.state.itemsPerPage) : this.pages = 0;
+    this.pages = Math.round(this.state.amiibo.length / this.state.itemsPerPage);
     if (this.state.isLoading === true) {
       return (
         <div>

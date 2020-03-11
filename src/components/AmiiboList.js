@@ -9,7 +9,7 @@ class AmiiboList extends Component {
       amiiboArray: [],
       pageNumber: 1,
       pageStart: 0,
-      pageEnd: 10,
+      pageEnd: this.props.itemsPerPage,
       currentPage: 1
     };
     this.displayArray = [];
@@ -34,11 +34,6 @@ class AmiiboList extends Component {
       });
     }
   };
-
-  itemsPerPage = (event) => {
-    event.persist();
-    this.setState({pageEnd: event.target.value})
-  }
 
   render() {
     this.displayArray = this.props.amiibo
@@ -97,10 +92,6 @@ class AmiiboList extends Component {
               </button>
               <div className="page-numbers">
                 {this.state.currentPage} of {this.props.pages}
-              </div>
-              <div className="page-items">
-                - Items Per Page: 
-                <input type="text" value={this.state.pageEnd} onInput={this.props.setItemsPerPage} onChange={this.itemsPerPage}></input>
               </div>
             </div>
             <div className="amiibo-list">{this.displayArray}</div>
