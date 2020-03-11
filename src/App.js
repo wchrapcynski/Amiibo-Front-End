@@ -68,7 +68,7 @@ class App extends Component {
     if (this.state.isLoading === true) {
       return (
         <div>
-          <h1>Loading</h1>
+          <h1>Loading (Waking up API)</h1>
         </div>
       );
     } else {
