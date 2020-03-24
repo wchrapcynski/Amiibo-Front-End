@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./Amiibo.css";
 import "./AmiiboSearch.css";
 import Amiibo from "./Amiibo";
@@ -9,80 +8,70 @@ import AmiiboSearchType from "./Searches/AmiiboSearchType";
 import AmiiboSearchID from "./Searches/AmiiboSearchID";
 import AmiiboSearchReleaseNA from "./Searches/AmiiboSearchReleaseNA";
 
-class AmiiboSearch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { searchArray: [] };
-    this.displayArray = [];
-  }
+function AmiiboSearch(props) {
+    const [searchArray, setSearchArray] = useState([])
+    
+    const displayArray = searchArray.map(item => {
+        let date = "";
+        if (item.releaseNA) {
+          date = item.releaseNA.replace("T00:00:00.000Z", "");
+        }
+        return (
+          <div key={item._id}>
+            <Amiibo
+              className="amiibo-name"
+              name={item.name}
+              gameSeries={item.gameSeries}
+              character={item.character}
+              type={item.type}
+              image={item.image}
+              id={item._id}
+              amiiboSeries={item.amiiboSeries}
+              releaseNA={date}></Amiibo>
+          </div>
+        );
+      });
 
-  setSearchArray = res => {
-    this.setState({ searchArray: res });
-  };
-
-  render() {
-    this.displayArray = this.state.searchArray.map(item => {
-      let date = "";
-      if (item.releaseNA) {
-        date = item.releaseNA.replace("T00:00:00.000Z", "");
-      }
-      return (
-        <div key={item._id}>
-          <Amiibo
-            className="amiibo-name"
-            name={item.name}
-            gameSeries={item.gameSeries}
-            character={item.character}
-            type={item.type}
-            image={item.image}
-            id={item._id}
-            amiiboSeries={item.amiiboSeries}
-            releaseNA={date}></Amiibo>
-        </div>
-      );
-    });
-
-    return (
-      <div>
+    return(
+        <div>
         <div className="amiibo-search">
           <h1>Amiibo Search</h1>
           <h6>Search is case sensitive</h6>
           <div className="search-boxes">
             <div className="search-boxes-left">
               <AmiiboSearchName
-                apiURL={this.props.baseURL}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
+                apiURL={props.baseURL}
+                array={searchArray}
+                setSearchArray={setSearchArray}
               />
               <AmiiboSearchChar
-                apiURL={this.props.baseURL}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
+                apiURL={props.baseURL}
+                array={searchArray}
+                setSearchArray={setSearchArray}
               />
               <AmiiboSearchType
-                apiURL={this.props.baseURL}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
+                apiURL={props.baseURL}
+                array={searchArray}
+                setSearchArray={setSearchArray}
               />
             </div>
             <div className="search-boxes-right">
               <AmiiboSearchID
-                apiURL={this.props.baseURL}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
+                apiURL={props.baseURL}
+                array={searchArray}
+                setSearchArray={setSearchArray}
               />
               <AmiiboSearchReleaseNA
-                apiURL={this.props.baseURL}
-                array={this.state.searchArray}
-                setSearchArray={this.setSearchArray}
+                apiURL={props.baseURL}
+                array={searchArray}
+                setSearchArray={setSearchArray}
               />
             </div>
           </div>
         </div>
-        <div className="amiibo-search-display">{this.displayArray}</div>
+        <div className="amiibo-search-display">{displayArray}</div>
       </div>
-    );
-  }
+    )
 }
 
-export default AmiiboSearch;
+export default AmiiboSearch
