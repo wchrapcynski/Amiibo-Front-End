@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Amiibo.css";
 
 function Amiibo(props) {
-  let location = useLocation();
+  let currentPage = useLocation();
   return (
     <div className="amiibo-item card">
       <div className="amiibo-image">
@@ -16,7 +16,7 @@ function Amiibo(props) {
         <div className="card-text">Amiibo Series: {props.amiiboSeries}</div>
         <div className="card-text">Type: {props.type}</div>
         <div className="card-text">Release Date: {props.releaseNA}</div>
-        {location.pathname === "/edit" ? (
+        {currentPage.pathname === "/edit" ? (
           ""
         ) : (
           <div className="card-text">

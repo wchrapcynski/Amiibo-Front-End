@@ -1,60 +1,48 @@
-import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "../Amiibo.css";
 import "./AmiiboSearchType.css";
 
-class AmiiboSearchType extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { searchArray: [], searchType: "", isLoading: false };
-  }
+function AmiiboSearchType(props) {
+  const [searchType, setSearchType] = useState("");
 
-  searchByType = event => {
+  const searchByType = event => {
     event.preventDefault();
-    this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "type/" + this.state.searchType, {})
+    fetch(props.apiURL + "type/" + searchType, {})
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
-        this.setState({
-          searchArray: res,
-          isLoading: false
-        });
-        this.props.setSearchArray(res);
+        props.setSearchArray(res);
       })
       .catch(err => {
         console.log("We've got a problem, sir.", err);
       });
   };
 
-  setType = event => {
-    this.setState({ searchType: event.target.value });
+  const setTypeHandler = event => {
+    setSearchType(event.target.value );
   };
 
-  render() {
-    return (
-      <div>
-        <div className="amiibo-search-type form-group">
-          <form className="form-inline">
-            <input
-              type="text"
-              placeholder="By Type"
-              onChange={this.setType}
-              className="form-control input-search"
-            />
-            <div className="space-five"></div>
-            <button
-              className="btn btn-primary"
-              type="submit"
-              onClick={this.searchByType}
-            >
-              Search
-            </button>
-          </form>
-        </div>
+  return (
+    <div>
+      <div className="amiibo-search-type form-group">
+        <form className="form-inline">
+          <input
+            type="text"
+            placeholder="By Type"
+            onChange={setTypeHandler}
+            className="form-control input-search"
+          />
+          <div className="space-five"></div>
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={searchByType}>
+            Search
+          </button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default AmiiboSearchType;
