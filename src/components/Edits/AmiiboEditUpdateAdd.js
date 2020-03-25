@@ -146,7 +146,7 @@ class EditUpdateAdd extends Component {
     return (
       <div>
         <div className="amiibo-search-ID">
-          {this.props.edit ? "Edit" : "Add"} By ID
+          Edit
           <form className="form-inline">
             <div className={this.props.edit ? "form-group" : "hide"}>
               <input
