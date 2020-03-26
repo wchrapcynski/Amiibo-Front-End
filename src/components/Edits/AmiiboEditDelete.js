@@ -7,9 +7,7 @@ class EditDelete extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchArray: [],
       editID: "",
-      isLoading: false,
       deleted: false
     };
     this.data = {};
@@ -18,7 +16,6 @@ class EditDelete extends Component {
   delete = event => {
     if (!this.state.deleted && this.state.editID) {
       event.preventDefault();
-      this.setState({ isLoading: true });
       fetch(this.props.apiURL + "id/" + this.state.editID, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
@@ -27,8 +24,6 @@ class EditDelete extends Component {
         .then(res => {
           console.log("Got it!");
           this.setState({
-            searchArray: res,
-            isLoading: false,
             deleted: true
           });
           // Sends res back to state in AmiiboSearch
@@ -65,8 +60,7 @@ class EditDelete extends Component {
             <button
               className="btn btn-danger"
               type="submit"
-              onClick={this.delete}
-            >
+              onClick={this.delete}>
               Delete
             </button>
           </div>
