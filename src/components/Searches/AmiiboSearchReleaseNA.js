@@ -1,60 +1,48 @@
-import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "../Amiibo.css";
 import "./AmiiboSearchReleaseNA.css";
 
-class AmiiboSearchReleaseNA extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { searchArray: [], searchRelease: "", isLoading: false };
-  }
+function AmiiboSearchReleaseNA(props) {
+  const [searchRelease, setSearchRelease] = useState("");
 
-  searchByRelease = event => {
+  const searchByRelease = event => {
     event.preventDefault();
-    this.setState({ isLoading: true });
-    fetch(this.props.apiURL + "releaseNA/" + this.state.searchRelease, {})
+    fetch(props.apiURL + "releaseNA/" + searchRelease)
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
-        this.setState({
-          searchArray: res,
-          isLoading: false
-        });
-        this.props.setSearchArray(res);
+        props.setSearchArray(res);
       })
       .catch(err => {
         console.log("We've got a problem, sir.", err);
       });
   };
 
-  setRelease = event => {
-    this.setState({ searchRelease: event.target.value });
+  const setReleaseHandler = event => {
+    setSearchRelease(event.target.value);
   };
 
-  render() {
-    return (
-      <div>
-        <div className="amiibo-search-release form-group">
-          <form className="form-inline">
-            <input
-              type="text"
-              placeholder="By Date YYYY-MM-DD"
-              onChange={this.setRelease}
-              className="form-control input-search"
-            />
-            <div className="space-five"></div>
-            <button
-              className="btn btn-primary"
-              type="submit"
-              onClick={this.searchByRelease}
-            >
-              Search
-            </button>
-          </form>
-        </div>
+  return (
+    <div>
+      <div className="amiibo-search-release form-group">
+        <form className="form-inline">
+          <input
+            type="text"
+            placeholder="By Date YYYY-MM-DD"
+            onChange={setReleaseHandler}
+            className="form-control input-search"
+          />
+          <div className="space-five"></div>
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={searchByRelease}>
+            Search
+          </button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default AmiiboSearchReleaseNA;
