@@ -6,20 +6,16 @@ class AmiiboList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amiiboArray: [],
-      pageNumber: 1,
       pageStart: 0,
-      pageEnd: this.props.itemsPerPage,
       currentPage: 1
     };
     this.displayArray = [];
   }
 
   nextPage = () => {
-    if (this.state.pageEnd < this.props.amiibo.length) {
+    if (this.state.pageStart + this.props.itemsPerPage < this.props.amiibo.length) {
       this.setState({
         pageStart: this.state.pageStart + this.props.itemsPerPage,
-        pageEnd: this.state.pageEnd + this.props.itemsPerPage,
         currentPage: this.state.currentPage + 1
       });
     }
@@ -29,7 +25,6 @@ class AmiiboList extends Component {
     if (this.state.pageStart > 0) {
       this.setState({
         pageStart: this.state.pageStart - this.props.itemsPerPage,
-        pageEnd: this.state.pageEnd - this.props.itemsPerPage,
         currentPage: this.state.currentPage - 1
       });
     }
@@ -37,7 +32,7 @@ class AmiiboList extends Component {
 
   render() {
     this.displayArray = this.props.amiibo
-      .slice(this.state.pageStart, this.state.pageEnd)
+      .slice(this.state.pageStart, this.state.pageStart + this.props.itemsPerPage)
       .map(item => {
         let date = "";
         if (item.releaseNA) {
