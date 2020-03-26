@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import "../Amiibo.css";
 import "./AmiiboEditDelete.css";
 
@@ -26,7 +25,6 @@ class EditDelete extends Component {
           this.setState({
             deleted: true
           });
-          // Sends res back to state in AmiiboSearch
           this.props.setSearchArray(res);
         })
         .catch(err => {
