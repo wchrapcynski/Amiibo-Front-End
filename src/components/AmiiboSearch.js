@@ -3,7 +3,7 @@ import "./Amiibo.css";
 import "./AmiiboSearch.css";
 import Amiibo from "./Amiibo";
 import AmiiboSearchName from "./Searches/AmiiboSearchName";
-import AmiiboSearchChar from "./Searches/AmiiboSearchCharNew";
+import AmiiboSearchChar from "./Searches/AmiiboSearchChar";
 import AmiiboSearchType from "./Searches/AmiiboSearchType";
 import AmiiboSearchReleaseNA from "./Searches/AmiiboSearchReleaseNA";
 
