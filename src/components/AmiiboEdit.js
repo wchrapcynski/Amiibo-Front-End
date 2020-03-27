@@ -57,6 +57,7 @@ class AmiiboEdit extends Component {
                 <AmiiboEditDelete
                   apiURL={this.props.baseURL}
                   array={this.state.searchArray}
+                  id={this.id}
                   setSearchArray={this.setSearchArray}
                 />
               </div>

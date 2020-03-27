@@ -1,230 +1,189 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "../Amiibo.css";
 import "./AmiiboEditUpdateAdd.css";
 
-class EditUpdateAdd extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {editID: ""};
-    this.data = {};
-    this.idPlaceholder = "ID (Required)";
-  }
+function EditUpdateAdd(props) {
+  const [editID, setEditID] = useState("");
+  const [idPlaceholder, setIdPlaceholder] = useState("ID (Required)");
+  const [data, setData] = useState({
+    name: "",
+    character: "",
+    gameSeries: "",
+    amiiboSeries: "",
+    type: "",
+    image: "",
+    releaseNA: ""
+  });
 
-  editByID = event => {
-    event.preventDefault();
-    fetch(this.props.baseURL + "id/" + this.state.editID, {
-      method: "PUT",
-      body: JSON.stringify(this.data),
-      headers: { "Content-Type": "application/json" }
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log("Got it!");
-        this.props.setSearchArray(res);
-      })
-      .catch(err => {
-        console.log("We've got a problem, sir.", err);
-      });
+  const setID = event => {
+    setEditID(event.target.value);
   };
 
-  AddNew = event => {
-    event.preventDefault();
-    fetch(this.props.baseURL, {
-      method: "POST",
-      body: JSON.stringify(this.data),
-      headers: { "Content-Type": "application/json" }
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log("Got it!");
-        this.props.setSearchArray(res);
-      })
-      .catch(err => {
-        console.log("We've got a problem, sir.", err);
-      });
-  };
-
-  setID = event => {
-    this.setState({ editID: event.target.value });
-  };
-
-  setUpdateName = event => {
-    if (event.target.value !== "") {
-      this.data.name = event.target.value;
-    } else {
-      delete this.data.name;
-    }
-  };
-
-  setUpdateChar = event => {
-    if (event.target.value !== "") {
-      this.data.character = event.target.value;
-    } else {
-      delete this.data.character;
-    }
-  };
-
-  setUpdateGameSeries = event => {
-    if (event.target.value !== "") {
-      this.data.gameSeries = event.target.value;
-    } else {
-      delete this.data.gameSeries;
-    }
-  };
-
-  setUpdateAmiiboSeries = event => {
-    if (event.target.value !== "") {
-      this.data.amiiboSeries = event.target.value;
-    } else {
-      delete this.data.amiiboSeries;
-    }
-  };
-
-  setUpdateAmiiboType = event => {
-    if (event.target.value !== "") {
-      this.data.type = event.target.value;
-    } else {
-      delete this.data.type;
-    }
-  };
-
-  setUpdateImageURL = event => {
-    if (event.target.value !== "") {
-      this.data.image = event.target.value;
-    } else {
-      delete this.data.image;
-    }
-  };
-
-  setUpdateNArelease = event => {
-    if (event.target.value !== "") {
-      this.data.releaseNA = event.target.value;
-    } else {
-      delete this.data.releaseNA;
-    }
-  };
-
-  componentDidMount = () => {
-    if(this.props.id) {
-      this.setState({editID: this.props.id})
-      this.idPlaceholder = this.props.id;
-      fetch(this.props.baseURL + "id/" + this.props.id, {
+  useEffect(() => {
+    if (props.id) {
+      setEditID(props.id);
+      setIdPlaceholder(props.id);
+      fetch(props.baseURL + "id/" + props.id, {
         method: "PUT",
-        body: JSON.stringify(this.data),
+        body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" }
       })
         .then(res => res.json())
         .then(res => {
           console.log("Got it!");
-          this.props.setSearchArray(res);
+          props.setSearchArray(res);
         })
         .catch(err => {
           console.log("We've got a problem, sir.", err);
         });
     }
-  }
+    // eslint-disable-next-line
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <div className="amiibo-search-ID">
-          Edit
-          <form className="form-inline">
-            <div className={this.props.edit ? "form-group" : "hide"}>
-              <input
-                type="text"
-                placeholder={this.idPlaceholder}
-                onChange={this.setID}
-                className="form-control"
-                style={{ width: "290px" }}
-              />
-              <div className="space-five"></div>
-              <button
-                className="btn btn-primary"
-                type="submit"
-                onClick={this.editByID}
-              >
-                Edit
-              </button>
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Name"
-                onChange={this.setUpdateName}
-                className="form-control"
-                style={
-                  this.props.edit ? { width: "350px" } : { width: "289px" }
-                }
-              />
-              <div className="space-five"></div>
-              <button
-                className={`btn btn-primary ${this.props.edit ? "hide" : ""}`}
-                type="submit"
-                onClick={this.AddNew}
-              >
-                Add
-              </button>
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Character"
-                onChange={this.setUpdateChar}
-                className="form-control"
-                style={{ width: "350px" }}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Game Series"
-                onChange={this.setUpdateGameSeries}
-                className="form-control"
-                style={{ width: "350px" }}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Amiibo Series"
-                onChange={this.setUpdateAmiiboSeries}
-                className="form-control"
-                style={{ width: "350px" }}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Amiibo Type (Card/Figure)"
-                onChange={this.setUpdateAmiiboType}
-                className="form-control"
-                style={{ width: "350px" }}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Image URL"
-                onChange={this.setUpdateImageURL}
-                className="form-control"
-                style={{ width: "350px" }}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="NA Release Date (format: YYYY-MM-DD)"
-                onChange={this.setUpdateNArelease}
-                className="form-control"
-                style={{ width: "350px" }}
-              />
-            </div>
-          </form>
-        </div>
+  const editByID = event => {
+    event.preventDefault();
+    fetch(props.baseURL + "id/" + editID, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("Got it!");
+        props.setSearchArray(res);
+      })
+      .catch(err => {
+        console.log("We've got a problem, sir.", err);
+      });
+  };
+
+  const AddNew = event => {
+    event.preventDefault();
+    fetch(props.baseURL, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("Got it!");
+        props.setSearchArray(res);
+      })
+      .catch(err => {
+        console.log("We've got a problem, sir.", err);
+      });
+  };
+
+  const setUpdateData = event => {
+    if (event.target.value !== "") {
+      setData({ ...data, [event.target.name]: event.target.value });
+    } else {
+      setData({ ...data, [event.target.name]: "" });
+    }
+  };
+
+  return (
+    <div>
+      <div className="amiibo-search-ID">
+        Edit
+        <form className="form-inline">
+          <div className={props.edit ? "form-group" : "hide"}>
+            <input
+              type="text"
+              placeholder={idPlaceholder}
+              onChange={setID}
+              className="form-control"
+              style={{ width: "290px" }}
+            />
+            <div className="space-five"></div>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={editByID}>
+              Edit
+            </button>
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              onChange={setUpdateData}
+              className="form-control"
+              style={props.edit ? { width: "350px" } : { width: "289px" }}
+            />
+            <div className="space-five"></div>
+            <button
+              className={`btn btn-primary ${props.edit ? "hide" : ""}`}
+              type="submit"
+              onClick={AddNew}>
+              Add
+            </button>
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Character"
+              name="character"
+              onChange={setUpdateData}
+              className="form-control"
+              style={{ width: "350px" }}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Game Series"
+              name="gameSeries"
+              onChange={setUpdateData}
+              className="form-control"
+              style={{ width: "350px" }}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Amiibo Series"
+              name="amiiboSeries"
+              onChange={setUpdateData}
+              className="form-control"
+              style={{ width: "350px" }}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Amiibo Type (Card/Figure)"
+              name="type"
+              onChange={setUpdateData}
+              className="form-control"
+              style={{ width: "350px" }}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Image URL"
+              name="image"
+              onChange={setUpdateData}
+              className="form-control"
+              style={{ width: "350px" }}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="NA Release Date (format: YYYY-MM-DD)"
+              name="releaseNA"
+              onChange={setUpdateData}
+              className="form-control"
+              style={{ width: "350px" }}
+            />
+          </div>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default EditUpdateAdd;
