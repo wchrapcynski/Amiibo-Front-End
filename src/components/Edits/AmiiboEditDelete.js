@@ -1,31 +1,23 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../Amiibo.css";
 import "./AmiiboEditDelete.css";
 
-class EditDelete extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editID: "",
-      deleted: false
-    };
-    this.data = {};
-  }
+function EditDelete(props) {
+  const [editID, setEditID] = useState("");
+  const [deleted, setDeleted] = useState(false)
 
-  delete = event => {
-    if (!this.state.deleted && this.state.editID) {
+  const deleteItem = event => {
+    if (!deleted && editID) {
       event.preventDefault();
-      fetch(this.props.apiURL + "id/" + this.state.editID, {
+      fetch(props.apiURL + "id/" + editID, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
       })
         .then(res => res.json())
         .then(res => {
           console.log("Got it!");
-          this.setState({
-            deleted: true
-          });
-          this.props.setSearchArray(res);
+          setDeleted(true);
+          props.setSearchArray(res);
         })
         .catch(err => {
           console.log("We've got a problem, sir.", err);
@@ -33,39 +25,37 @@ class EditDelete extends Component {
     }
   };
 
-  setID = event => {
-    if (!this.state.deleted) {
-      this.setState({ editID: event.target.value });
+  const setID = event => {
+    if (!deleted) {
+        setEditID(event.target.value);
     }
   };
 
-  render() {
-    return (
-      <div>
-        {this.state.deleted
-          ? "Item has been deleted."
-          : "Delete can not be undone!"}
-        <form className="form-inline">
-          <div className="form-group amiibo-delete">
-            <input
-              type="text"
-              placeholder="Enter ID to be deleted"
-              onChange={this.setID}
-              className="form-control"
-              style={{ width: "270px" }}
-            />
-            <div className="space-five"></div>
-            <button
-              className="btn btn-danger"
-              type="submit"
-              onClick={this.delete}>
-              Delete
-            </button>
-          </div>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      {deleted
+        ? "Item has been deleted."
+        : "Delete can not be undone!"}
+      <form className="form-inline">
+        <div className="form-group amiibo-delete">
+          <input
+            type="text"
+            placeholder="Enter ID to be deleted"
+            onChange={setID}
+            className="form-control"
+            style={{ width: "270px" }}
+          />
+          <div className="space-five"></div>
+          <button
+            className="btn btn-danger"
+            type="submit"
+            onClick={deleteItem}>
+            Delete
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default EditDelete;
