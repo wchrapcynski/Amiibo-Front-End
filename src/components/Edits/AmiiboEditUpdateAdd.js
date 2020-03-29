@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "../Amiibo.css";
 import "./AmiiboEditUpdateAdd.css";
 
@@ -14,6 +15,7 @@ function EditUpdateAdd(props) {
     image: "",
     releaseNA: ""
   });
+  let currentPage = useLocation();
 
   const setID = event => {
     setEditID(event.target.value);
@@ -84,10 +86,11 @@ function EditUpdateAdd(props) {
 
   return (
     <div>
+      {console.log(currentPage.pathname)}
       <div className="amiibo-search-ID">
         Edit
         <form className="form-inline">
-          <div className={props.edit ? "form-group" : "hide"}>
+          <div className={currentPage.pathname === "/edit/" ? "form-group" : "hide"}>
             <input
               type="text"
               placeholder={idPlaceholder}
@@ -110,11 +113,11 @@ function EditUpdateAdd(props) {
               name="name"
               onChange={setUpdateData}
               className="form-control"
-              style={props.edit ? { width: "350px" } : { width: "289px" }}
+              style={currentPage.pathname === "/edit/" ? { width: "350px" } : { width: "289px" }}
             />
             <div className="space-five"></div>
             <button
-              className={`btn btn-primary ${props.edit ? "hide" : ""}`}
+              className={`btn btn-primary ${currentPage.pathname === "/edit/" ? "hide" : ""}`}
               type="submit"
               onClick={AddNew}>
               Add

@@ -36,14 +36,6 @@ class App extends Component {
       });
   };
 
-  editPage = () => {
-    this.setState({ edit: true });
-  };
-
-  addPage = () => {
-    this.setState({ edit: false });
-  };
-
   sortOrder = () => {
     if (this.state.apiURL === `${this.state.baseURL}sorta`) {
       this.setState({ apiURL: `${this.state.baseURL}sortd` });
@@ -68,62 +60,59 @@ class App extends Component {
       );
     } else {
       return (
-        <div>
-          <nav className="nav nav-tabs">
-            <Link className="nav-item nav-link" to="/">
-              Amiibo List
-            </Link>
-            <Link className="nav-item nav-link" to="/search">
-              Search
-            </Link>
-            <Link
-              className="nav-item nav-link"
-              to="/edit/"
-              onClick={this.editPage}>
-              Edit
-            </Link>
-            <Link
-              className="nav-item nav-link"
-              to="/add/"
-              onClick={this.addPage}>
-              Add
-            </Link>
-          </nav>
-          <div className="amiibo-list">
-            <Route
-              path="/"
-              exact
-              render={routerProps => (
-                <AmiiboList
-                  {...routerProps}
-                  {...this.state}
-                  setItemsPerPage={this.setItemsPerPage}
-                  editPage={this.editPage}
-                  sortOrder={this.sortOrder}
-                  pages={this.pages}
-                />
-              )}
-            />
-            <Route
-              path="/search"
-              render={routerProps => (
-                <AmiiboSearch {...routerProps} {...this.state} />
-              )}
-            />
-            <Route
-              path="/edit"
-              render={routerProps => (
-                <AmiiboEdit {...routerProps} {...this.state} />
-              )}
-            />
-            <Route
-              path="/add"
-              render={routerProps => (
-                <AmiiboEdit {...routerProps} {...this.state} />
-              )}
-            />
+          <div>
+            <nav className="nav nav-tabs">
+              <Link className="nav-item nav-link" to="/">
+                Amiibo List
+              </Link>
+              <Link className="nav-item nav-link" to="/search">
+                Search
+              </Link>
+              <Link
+                className="nav-item nav-link"
+                to="/edit/">
+                Edit
+              </Link>
+              <Link
+                className="nav-item nav-link"
+                to="/add/">
+                Add
+              </Link>
+            </nav>
+            <div className="amiibo-list">
+              <Route
+                path="/"
+                exact
+                render={routerProps => (
+                  <AmiiboList
+                    {...routerProps}
+                    {...this.state}
+                    setItemsPerPage={this.setItemsPerPage}
+                    sortOrder={this.sortOrder}
+                    pages={this.pages}
+                  />
+                )}
+              />
+              <Route
+                path="/search"
+                render={routerProps => (
+                  <AmiiboSearch {...routerProps} {...this.state} />
+                )}
+              />
+              <Route
+                path="/edit"
+                render={routerProps => (
+                  <AmiiboEdit {...routerProps} {...this.state} />
+                )}
+              />
+              <Route
+                path="/add"
+                render={routerProps => (
+                  <AmiiboEdit {...routerProps} {...this.state} />
+                )}
+              />
+            </div>
           </div>
-        </div>
       );
     }
   }
