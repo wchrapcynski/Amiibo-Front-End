@@ -1,43 +1,29 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./AmiiboList.css";
 import Amiibo from "./Amiibo";
 
-class AmiiboList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      amiiboArray: [],
-      pageNumber: 1,
-      pageStart: 0,
-      pageEnd: this.props.itemsPerPage,
-      currentPage: 1
-    };
-    this.displayArray = [];
-  }
+function AmiiboList(props) {
+  const [pageStart, setPageStart] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [displayArray, setDisplayArray] = useState([]);
 
-  nextPage = () => {
-    if (this.state.pageEnd < this.props.amiibo.length) {
-      this.setState({
-        pageStart: this.state.pageStart + this.props.itemsPerPage,
-        pageEnd: this.state.pageEnd + this.props.itemsPerPage,
-        currentPage: this.state.currentPage + 1
-      });
+  const nextPage = () => {
+    if (pageStart + props.itemsPerPage < props.amiibo.length) {
+      setPageStart(pageStart + props.itemsPerPage);
+      setCurrentPage(currentPage + 1);
     }
   };
 
-  previousPage = () => {
-    if (this.state.pageStart > 0) {
-      this.setState({
-        pageStart: this.state.pageStart - this.props.itemsPerPage,
-        pageEnd: this.state.pageEnd - this.props.itemsPerPage,
-        currentPage: this.state.currentPage - 1
-      });
+  const previousPage = () => {
+    if (pageStart > 0) {
+      setPageStart(pageStart - props.itemsPerPage);
+      setCurrentPage(currentPage - 1);
     }
   };
 
-  render() {
-    this.displayArray = this.props.amiibo
-      .slice(this.state.pageStart, this.state.pageEnd)
+  useEffect(() => {
+    let newArray = props.amiibo
+      .slice(pageStart, pageStart + props.itemsPerPage)
       .map(item => {
         let date = "";
         if (item.releaseNA) {
@@ -46,8 +32,6 @@ class AmiiboList extends Component {
         return (
           <div key={item._id}>
             <Amiibo
-              {...this.props}
-              {...this.state}
               className="amiibo-name"
               name={item.name}
               gameSeries={item.gameSeries}
@@ -60,60 +44,61 @@ class AmiiboList extends Component {
           </div>
         );
       });
-    return (
-      <div>
-        <main>
-          <div>
-            <h1>Amiibo List</h1>
-            <div className="page-nav">
-              <button
-                className="btn btn-primary"
-                onClick={this.props.sortOrder}>
-                <i
-                  className={
-                    this.props.apiURL ===
-                    "https://amiibo-api.herokuapp.com/amiibo/sorta"
-                      ? "fa fa-arrow-up"
-                      : "fa fa-arrow-down"
-                  }
-                  aria-hidden="true"></i>
-              </button>
-              <div className="space-five"></div>
-              <button
-                className="page-nav-previous btn btn-primary"
-                onClick={this.previousPage}>
-                Previous
-              </button>
-              <div className="space-five"></div>
-              <button
-                className="page-nav-next btn btn-primary"
-                onClick={this.nextPage}>
-                Next
-              </button>
-              <div className="page-numbers">
-                {this.state.currentPage} of {this.props.pages}
-              </div>
-            </div>
-            <div className="amiibo-list">{this.displayArray}</div>
-            <div className="page-nav">
-              <button
-                className="page-nav-previous btn btn-primary"
-                onClick={this.previousPage}>
-                Previous
-              </button>
-              <div className="space-five"></div>
-              <button
-                className="page-nav-next btn btn-primary"
-                onClick={this.nextPage}>
-                Next
-              </button>
+    setDisplayArray(newArray);
+    // eslint-disable-next-line
+  }, [currentPage]);
+
+  return (
+    <div>
+      <main>
+        <div>
+          <h1>Amiibo List</h1>
+          <div className="page-nav">
+            <button className="btn btn-primary" onClick={props.sortOrder}>
+              <i
+                className={
+                  props.apiURL ===
+                  "https://amiibo-api.herokuapp.com/amiibo/sorta"
+                    ? "fa fa-arrow-up"
+                    : "fa fa-arrow-down"
+                }
+                aria-hidden="true"></i>
+            </button>
+            <div className="space-five"></div>
+            <button
+              className="page-nav-previous btn btn-primary"
+              onClick={previousPage}>
+              Previous
+            </button>
+            <div className="space-five"></div>
+            <button
+              className="page-nav-next btn btn-primary"
+              onClick={nextPage}>
+              Next
+            </button>
+            <div className="page-numbers">
+              {currentPage} of {props.pages}
             </div>
           </div>
-        </main>
-        <footer></footer>
-      </div>
-    );
-  }
+          <div className="amiibo-list">{displayArray}</div>
+          <div className="page-nav">
+            <button
+              className="page-nav-previous btn btn-primary"
+              onClick={previousPage}>
+              Previous
+            </button>
+            <div className="space-five"></div>
+            <button
+              className="page-nav-next btn btn-primary"
+              onClick={nextPage}>
+              Next
+            </button>
+          </div>
+        </div>
+      </main>
+      <footer></footer>
+    </div>
+  );
 }
 
 export default AmiiboList;
