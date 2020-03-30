@@ -6,8 +6,16 @@ import "./AmiiboEditUpdateAdd.css";
 class EditUpdateAdd extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchArray: [], editID: "", isLoading: false };
-    this.data = {};
+    this.state = { editID: ""};
+    this.data = {
+      name: "",
+      character: "",
+      gameSeries: "",
+      amiiboSeries: "",
+      type: "",
+      image: "",
+      release: ""
+    };
     this.idPlaceholder = "ID (Required)";
   }
 
@@ -22,11 +30,6 @@ class EditUpdateAdd extends Component {
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
-        this.setState({
-          searchArray: res,
-          isLoading: false
-        });
-        // Sends res back to state in AmiiboSearch
         this.props.setSearchArray(res);
       })
       .catch(err => {
@@ -61,59 +64,11 @@ class EditUpdateAdd extends Component {
     this.setState({ editID: event.target.value });
   };
 
-  setUpdateName = event => {
+  setUpdateData = event => {
     if (event.target.value !== "") {
-      this.data.name = event.target.value;
+      this.data = { ...this.data, [event.target.name]: event.target.value };
     } else {
-      delete this.data.name;
-    }
-  };
-
-  setUpdateChar = event => {
-    if (event.target.value !== "") {
-      this.data.character = event.target.value;
-    } else {
-      delete this.data.character;
-    }
-  };
-
-  setUpdateGameSeries = event => {
-    if (event.target.value !== "") {
-      this.data.gameSeries = event.target.value;
-    } else {
-      delete this.data.gameSeries;
-    }
-  };
-
-  setUpdateAmiiboSeries = event => {
-    if (event.target.value !== "") {
-      this.data.amiiboSeries = event.target.value;
-    } else {
-      delete this.data.amiiboSeries;
-    }
-  };
-
-  setUpdateAmiiboType = event => {
-    if (event.target.value !== "") {
-      this.data.type = event.target.value;
-    } else {
-      delete this.data.type;
-    }
-  };
-
-  setUpdateImageURL = event => {
-    if (event.target.value !== "") {
-      this.data.image = event.target.value;
-    } else {
-      delete this.data.image;
-    }
-  };
-
-  setUpdateNArelease = event => {
-    if (event.target.value !== "") {
-      this.data.releaseNA = event.target.value;
-    } else {
-      delete this.data.releaseNA;
+      this.data = { ...this.data, [event.target.name]: "" };
     }
   };
 
@@ -146,7 +101,7 @@ class EditUpdateAdd extends Component {
     return (
       <div>
         <div className="amiibo-search-ID">
-          Edit
+          {this.props.edit ? "Edit" : "Add"}
           <form className="form-inline">
             <div className={this.props.edit ? "form-group" : "hide"}>
               <input
@@ -168,8 +123,9 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
+                name="name"
                 placeholder="Name"
-                onChange={this.setUpdateName}
+                onChange={this.setUpdateData}
                 className="form-control"
                 style={
                   this.props.edit ? { width: "350px" } : { width: "289px" }
@@ -187,8 +143,9 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
+                name="character"
                 placeholder="Character"
-                onChange={this.setUpdateChar}
+                onChange={this.setUpdateData}
                 className="form-control"
                 style={{ width: "350px" }}
               />
@@ -196,8 +153,9 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
+                name="gameSeries"
                 placeholder="Game Series"
-                onChange={this.setUpdateGameSeries}
+                onChange={this.setUpdateData}
                 className="form-control"
                 style={{ width: "350px" }}
               />
@@ -205,8 +163,9 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
+                name="amiiboSeries"
                 placeholder="Amiibo Series"
-                onChange={this.setUpdateAmiiboSeries}
+                onChange={this.setUpdateData}
                 className="form-control"
                 style={{ width: "350px" }}
               />
@@ -214,8 +173,9 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
+                name="type"
                 placeholder="Amiibo Type (Card/Figure)"
-                onChange={this.setUpdateAmiiboType}
+                onChange={this.setUpdateData}
                 className="form-control"
                 style={{ width: "350px" }}
               />
@@ -223,8 +183,9 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
+                name="image"
                 placeholder="Image URL"
-                onChange={this.setUpdateImageURL}
+                onChange={this.setUpdateData}
                 className="form-control"
                 style={{ width: "350px" }}
               />
@@ -232,8 +193,9 @@ class EditUpdateAdd extends Component {
             <div className="form-group">
               <input
                 type="text"
+                name="release"
                 placeholder="NA Release Date (format: YYYY-MM-DD)"
-                onChange={this.setUpdateNArelease}
+                onChange={this.setUpdateData}
                 className="form-control"
                 style={{ width: "350px" }}
               />
