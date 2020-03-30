@@ -31,6 +31,10 @@ h1 {
     align-items: center;
 }
 
+.amiibo-edit-display {
+    width: 300px;
+}
+
 footer {
     height: 50px;
 }

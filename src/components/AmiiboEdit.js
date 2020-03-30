@@ -42,7 +42,9 @@ class AmiiboEdit extends Component {
     return (
       <div>
         <div className="amiibo-edit">
+          <h1>Amiibo Edit</h1>
           <div className="edit-main">
+            <div className="amiibo-edit-display">{this.state.searchArray.length !== 0 ? this.displayArray : this.props.edit ? "Enter an ID and click 'Edit'" : "Fill in information and click 'Add'"}</div>
             <div className="edit-boxes">
               <div className="edit-components">
                 <AmiiboEditUpdateAdd
@@ -55,7 +57,6 @@ class AmiiboEdit extends Component {
                 <AmiiboEditDelete
                   apiURL={this.props.baseURL}
                   array={this.state.searchArray}
-                  id={this.id}
                   setSearchArray={this.setSearchArray}
                 />
               </div>
