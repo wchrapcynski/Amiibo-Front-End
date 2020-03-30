@@ -86,11 +86,25 @@ function EditUpdateAdd(props) {
 
   return (
     <div>
-      {console.log(currentPage.pathname)}
+      <div className="amiibo-edit-display">
+        {currentPage.pathname === "/edit/" ? (
+          <div>
+            <h1>Amiibo Edit</h1>
+            <h6>Enter an ID and click 'Edit'</h6>
+          </div>
+        ) : (
+          <div>
+            <h1>Amiibo Add</h1>
+            <h6>Fill in information and click 'Add'</h6>
+          </div>
+        )}
+      </div>
       <div className="amiibo-search-ID">
-        Edit
         <form className="form-inline">
-          <div className={currentPage.pathname === "/edit/" ? "form-group" : "hide"}>
+          <div
+            className={
+              currentPage.pathname === "/edit/" ? "form-group" : "hide"
+            }>
             <input
               type="text"
               placeholder={idPlaceholder}
@@ -113,11 +127,17 @@ function EditUpdateAdd(props) {
               name="name"
               onChange={setUpdateData}
               className="form-control"
-              style={currentPage.pathname === "/edit/" ? { width: "350px" } : { width: "289px" }}
+              style={
+                currentPage.pathname === "/edit/"
+                  ? { width: "350px" }
+                  : { width: "289px" }
+              }
             />
             <div className="space-five"></div>
             <button
-              className={`btn btn-primary ${currentPage.pathname === "/edit/" ? "hide" : ""}`}
+              className={`btn btn-primary ${
+                currentPage.pathname === "/edit/" ? "hide" : ""
+              }`}
               type="submit"
               onClick={AddNew}>
               Add
