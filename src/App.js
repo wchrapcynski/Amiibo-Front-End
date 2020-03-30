@@ -105,19 +105,19 @@ class App extends Component {
               )}
             />
             <Route
-              path="/search"
+              path="/search/"
               render={routerProps => (
                 <AmiiboSearch {...routerProps} {...this.state} />
               )}
             />
             <Route
-              path="/edit"
+              path="/edit/"
               render={routerProps => (
                 <AmiiboEdit {...routerProps} {...this.state} />
               )}
             />
             <Route
-              path="/add"
+              path="/add/"
               render={routerProps => (
                 <AmiiboEdit {...routerProps} {...this.state} />
               )}
