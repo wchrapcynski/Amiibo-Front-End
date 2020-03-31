@@ -1,19 +1,17 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import "../Amiibo.css";
 import "./AmiiboEditUpdateAdd.css";
 
 class EditUpdateAdd extends Component {
   constructor(props) {
     super(props);
-    this.state = { searchArray: [], editID: "", isLoading: false };
+    this.state = {editID: ""};
     this.data = {};
     this.idPlaceholder = "ID (Required)";
   }
 
   editByID = event => {
     event.preventDefault();
-    this.setState({ isLoading: true });
     fetch(this.props.baseURL + "id/" + this.state.editID, {
       method: "PUT",
       body: JSON.stringify(this.data),
@@ -22,11 +20,6 @@ class EditUpdateAdd extends Component {
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
-        this.setState({
-          searchArray: res,
-          isLoading: false
-        });
-        // Sends res back to state in AmiiboSearch
         this.props.setSearchArray(res);
       })
       .catch(err => {
@@ -45,11 +38,6 @@ class EditUpdateAdd extends Component {
       .then(res => res.json())
       .then(res => {
         console.log("Got it!");
-        this.setState({
-          searchArray: res,
-          isLoading: false
-        });
-        // Sends res back to state in AmiiboSearch
         this.props.setSearchArray(res);
       })
       .catch(err => {
@@ -129,11 +117,6 @@ class EditUpdateAdd extends Component {
         .then(res => res.json())
         .then(res => {
           console.log("Got it!");
-          this.setState({
-            searchArray: res,
-            isLoading: false
-          });
-          // Sends res back to state in AmiiboSearch
           this.props.setSearchArray(res);
         })
         .catch(err => {
