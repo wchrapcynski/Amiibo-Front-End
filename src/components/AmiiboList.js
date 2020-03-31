@@ -52,7 +52,7 @@ function AmiiboList(props) {
     <div>
       <main>
         <div>
-          <h1>Amiibo List</h1>
+          <h1 className="amiibo-list-title">Amiibo List</h1>
           <div className="page-nav">
             <button className="btn btn-primary" onClick={props.sortOrder}>
               <i

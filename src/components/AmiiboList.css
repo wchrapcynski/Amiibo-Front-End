@@ -17,6 +17,10 @@ h1 {
     margin: 0 5px;
 }
 
+.amiibo-list-title {
+    margin-top: 10px;
+}
+
 .amiibo-list, .page-nav {
     display: flex;
     justify-content: center;
