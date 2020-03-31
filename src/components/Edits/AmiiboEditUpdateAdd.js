@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import "../Amiibo.css";
 import "./AmiiboEditUpdateAdd.css";
 
@@ -52,7 +51,6 @@ class EditUpdateAdd extends Component {
           searchArray: res,
           isLoading: false
         });
-        // Sends res back to state in AmiiboSearch
         this.props.setSearchArray(res);
       })
       .catch(err => {
@@ -88,7 +86,6 @@ class EditUpdateAdd extends Component {
             searchArray: res,
             isLoading: false
           });
-          // Sends res back to state in AmiiboSearch
           this.props.setSearchArray(res);
         })
         .catch(err => {
